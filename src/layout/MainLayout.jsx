@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  useTheme
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
+import Typography from '@mui/joy/Typography';
+import IconButton from '@mui/joy/IconButton';
+import Menu from '@mui/icons-material/Menu';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
 
@@ -17,42 +12,47 @@ const drawerWidth = 240;
 const MainLayout = () => {
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => setOpen(!open);
-  const theme = useTheme();
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
+    <Box sx={{ display: 'flex', bgcolor: 'background.body', minHeight: '100vh' }}>
+      <Sheet
+        color="primary"
+        variant="solid"
         sx={{
+          height: 64,
           width: `calc(100% - ${open ? drawerWidth : 60}px)`,
           ml: `${open ? drawerWidth : 60}px`,
-          bgcolor: theme.palette.secondary.main // Barclays dark blue
+          position: 'fixed',
+          zIndex: 1200,
+          display: 'flex',
+          alignItems: 'center',
+          px: 2,
+          boxShadow: 'sm',
         }}
       >
-        <Toolbar>
-          <IconButton color="inherit" edge="start" onClick={toggleDrawer} sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            sx={{
-              color: '#ffffff',         // Force white text (Barclays standard for dark backgrounds)
-              fontWeight: 600,          // Slightly bolder
-              letterSpacing: 0.5,       // Improve readability
-              fontFamily: '"Segoe UI", Roboto, sans-serif'
-            }}
-          >
-            Barclays Dashboard
-          </Typography>
-        </Toolbar>
-      </AppBar>
-
+        <IconButton variant="plain" color="neutral" onClick={toggleDrawer} sx={{ mr: 2 }}>
+          <Menu />
+        </IconButton>
+        <Typography
+          level="h4"
+          sx={{
+            color: '#ffffff',
+            fontWeight: 600,
+            letterSpacing: 0.5,
+            fontFamily: '"Segoe UI", Roboto, sans-serif'
+          }}
+        >
+          Barclays Dashboard
+        </Typography>
+      </Sheet>
       <Sidebar open={open} />
-
-      <Box component="main" sx={{ flexGrow: 1, bgcolor: theme.palette.background.default, p: 3 }}>
-        <Toolbar />
+      <Box component="main" sx={{
+        flexGrow: 1,
+        bgcolor: 'background.surface',
+        p: 3,
+        ml: `${open ? drawerWidth : 60}px`,
+        mt: '64px'
+      }}>
         <Outlet />
       </Box>
     </Box>

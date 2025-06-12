@@ -1,6 +1,11 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import Box from '@mui/joy/Box';
+import Typography from '@mui/joy/Typography';
 
-const Settings = () => <Typography variant="h5">Settings Page</Typography>;
+const Settings = () => (
+  <Box>
+    <Typography level="h4">Settings Page</Typography>
+  </Box>
+);
 
 export default Settings;
