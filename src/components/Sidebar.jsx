@@ -60,7 +60,7 @@ const Sidebar = ({ open }) => {
                 justifyContent: open ? 'flex-start' : 'center',
                 px: open ? 2 : 0,
                 bgcolor: location.pathname === path ? 'primary.200' : 'inherit',
-                '&:hover': { bgcolor: 'primary.300' }
+                '&:hover': { bgcolor: 'primary.200' }
               }}
             >
               <ListItemButton

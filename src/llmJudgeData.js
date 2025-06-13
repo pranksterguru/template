@@ -2,14 +2,15 @@ const llmJudgeData = {
   "result": [
     {
       "overall": {
-        "overallname": "over all evaluation metrix",
+        "overallname": "Over all evaluation metrix",
         "elements": [
           {
             "type": "cards",
             "columns": 4,
             "cards": [
               { "name": "helpfulness", "score": 4 },
-              { "name": "completeness", "score": 4 }
+              { "name": "completeness", "score": 4 },
+              
             ]
           },
           {

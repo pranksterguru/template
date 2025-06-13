@@ -16,9 +16,9 @@ const MainLayout = () => {
   return (
     <Box sx={{ display: 'flex', bgcolor: 'background.body', minHeight: '100vh' }}>
       <Sheet
-        color="primary"
-        variant="solid"
+       
         sx={{
+          bgcolor: 'primary.500',
           height: 64,
           width: `calc(100% - ${open ? drawerWidth : 60}px)`,
           ml: `${open ? drawerWidth : 60}px`,
@@ -48,7 +48,7 @@ const MainLayout = () => {
       <Sidebar open={open} />
       <Box component="main" sx={{
         flexGrow: 1,
-        bgcolor: 'background.surface',
+        bgcolor: 'background.',
         p: 3,
         ml: `${open ? drawerWidth : 60}px`,
         mt: '64px'
