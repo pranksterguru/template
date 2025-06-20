@@ -11,6 +11,8 @@ import AccordionDetails from '@mui/joy/AccordionDetails';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Divider from '@mui/joy/Divider';
 import llmJudgeData from '../llmJudgeData'; // Update path if needed
+import TrendingUp from '@mui/icons-material/TrendingUp';
+import StatsCard from '../components/CustomControls';
 
 function renderCards(cardsObj) {
   // Fixed column layout with left alignment and fillers
@@ -22,12 +24,15 @@ function renderCards(cardsObj) {
     <Grid container spacing={2} columns={columns} sx={{ mb: 2 }}>
       {cards.map((card, idx) => (
         <Grid key={card.name} xs={1}>
-          <Card variant="outlined" color="primary" sx={{ minWidth: 120, textAlign: 'center' }}>
-            <CardContent>
-              <Typography level="title-md" sx={{ mb: 1 }}>{card.name}</Typography>
-              <Typography level="h3">{card.score}</Typography>
-            </CardContent>
-          </Card>
+
+<StatsCard
+  title={card.name}
+  value={card.score}
+  colour={card.colour}
+  size={card.size}
+/>
+
+
         </Grid>
       ))}
       {fillers.map((_, idx) => (

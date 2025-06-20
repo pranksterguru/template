@@ -8,9 +8,10 @@ const llmJudgeData = {
             "type": "cards",
             "columns": 4,
             "cards": [
-              { "name": "helpfulness", "score": 4 },
-              { "name": "completeness", "score": 4 },
-              
+              { "name": "HELPFULNESS", "score": 4, "colour": "green","size":"small"  },
+              { "name": "COMPLETENESS", "score": 4, "colour": "red","size":"medium"  },
+            { "name": "MISC", "score": 4, "colour": "amber","size":"large"  },
+
             ]
           },
           {
@@ -29,16 +30,9 @@ const llmJudgeData = {
           "id": "1",
           "name": "Test 1",
           "model": "gpt-4",
-          "color": "red",
+          "colour": "red",
           "elements": [
-            {
-              "type": "cards",
-              "columns": 4,
-              "cards": [
-                { "name": "helpfulness", "score": 4 },
-                { "name": "completeness", "score": 4 }
-              ]
-            },
+
             {
               "type": "table",
               "columns": 2,
@@ -54,16 +48,9 @@ const llmJudgeData = {
           "id": "2",
           "name": "Test 2",
           "model": "llama-3",
-          "color": "blue",
+          "colour": "blue",
           "elements": [
-            {
-              "type": "cards",
-              "columns": 4,
-              "cards": [
-                { "name": "helpfulness", "score": 3 },
-                { "name": "completeness", "score": 5 }
-              ]
-            },
+
             {
               "type": "table",
               "columns": 2,
