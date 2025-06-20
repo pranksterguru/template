@@ -46,7 +46,7 @@ const sizeMap = {
 const StatsCard = ({ title, value, colour = 'green', size = 'medium' }) => {
   const gradient = colorMap[colour] || colorMap.green;
   const s = sizeMap[size] || sizeMap.medium;
-  const [activeIcon, setActiveIcon] = useState(0); // 0 = initial, 1 = final
+  const [activeIcon, setActiveIcon] = useState(0);
 
   const [initialIconKey, finalIconKey] = iconTransitionMap[colour] || ['SentimentNeutral', 'CheckCircleOutline'];
   const InitialIcon = MuiIcons[initialIconKey];
@@ -54,7 +54,7 @@ const StatsCard = ({ title, value, colour = 'green', size = 'medium' }) => {
 
   const handleHoverIn = () => {
     setActiveIcon(0);
-    setTimeout(() => setActiveIcon(1), 100); // short delay to trigger transition
+    setTimeout(() => setActiveIcon(1), 100);
   };
 
   const handleHoverOut = () => {
@@ -81,9 +81,19 @@ const StatsCard = ({ title, value, colour = 'green', size = 'medium' }) => {
           transform: 'scale(1.03)',
           boxShadow: 'xl',
         },
+        '&:hover .nudge-icon': {
+          animation: 'nudgeBounce 0.6s ease',
+        },
+        '@keyframes nudgeBounce': {
+          '0%': { transform: 'translateY(0)' },
+          '30%': { transform: 'translateY(-4px)' },
+          '60%': { transform: 'translateY(2px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
       }}
     >
       <Box
+        className="nudge-icon"
         sx={{
           position: 'absolute',
           top: -s.iconBox / 2,
