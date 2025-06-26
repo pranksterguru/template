@@ -1,21 +1,29 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
-import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
 import LLMJudge from './pages/LLMJudge';
+import LLMJudgeConfig from './pages/LLMJudgeConfig';
+import LLMJudgeReport from './pages/LLMJudgeReport';
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/landing" element={<LandingPage />} />
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="users" element={<Users />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="llm-judge" element={<LLMJudge />} />
+      {/* Redirect root `/` to login page */}
+      <Route path="/" element={<Navigate to="/LoginPage" replace />} />
+      <Route path="/LoginPage" element={<LoginPage />} />
+
+      {/* Wrap all layout-based routes under MainLayout */}
+      <Route element={<MainLayout />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/llmjudge" element={<LLMJudge />} />
+        <Route path="/llmjudgeconfig" element={<LLMJudgeConfig />} />
+        <Route path="/llmjudgereport" element={<LLMJudgeReport />} />
       </Route>
     </Routes>
   );

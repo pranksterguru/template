@@ -12,6 +12,7 @@ const barclaysTheme = extendTheme({
           outlinedBorder: '#00395D', // Dark Blue (border)
           outlinedColor: '#00395D',
           plainColor: '#00395D',
+          50: '#c2c2c2', //gray
           100: '#AFFDFD',   // Bright Mint (very light)
           200: '#0076B6',   // Light Blue
           300: '#006DE3',   // Active Blue
@@ -50,9 +51,10 @@ const barclaysTheme = extendTheme({
           level1: '#E8E8C9',  // stone
         },
         text: {
-          primary: '#00395D', // dark blue
-          secondary: '#515151', // dark grey
-        },
+          primary: '#00395D',    // dark blue
+          secondary: '#515151',  // dark grey
+          white: '#ffffff',      // white
+        }
       },
     },
   },

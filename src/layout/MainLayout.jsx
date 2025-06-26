@@ -42,7 +42,7 @@ const MainLayout = () => {
             fontFamily: '"Segoe UI", Roboto, sans-serif'
           }}
         >
-          Barclays Dashboard
+          AI-Brain
         </Typography>
       </Sheet>
       <Sidebar open={open} />
