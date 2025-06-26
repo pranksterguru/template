@@ -10,7 +10,13 @@ import HourglassEmptyOutlined from '@mui/icons-material/HourglassEmptyOutlined';
 import HelpOutline from '@mui/icons-material/HelpOutline';
 
 const InfoCard = (props) => {
-  const { icon, title, description, hoverEffect } = props;
+  const {
+    icon,
+    title,
+    description,
+    hoverEffect,
+    contentAlign = 'center'  // 'center', 'left', 'right'
+  } = props;
 
   const iconMap = {
     info: <InfoOutlined sx={{ color: '#fff', fontSize: 20 }} />,
@@ -23,12 +29,19 @@ const InfoCard = (props) => {
 
   const showHeader = Boolean(title);
 
+  const contentJustifyMap = {
+    center: 'center',
+    left: 'flex-start',
+    right: 'flex-end'
+  };
+
   return (
     <Card
       variant="outlined"
       sx={{
         borderRadius: 'lg',
         boxShadow: 'md',
+        width: '100%',
         p: 0,
         pt: showHeader ? 3.5 : 2,
         position: 'relative',
@@ -64,19 +77,34 @@ const InfoCard = (props) => {
           {icon && iconMap[icon]}
           <Typography
             level="body-md"
-            sx={{
-              color: (theme) => theme.palette.text.white
-            }}
+            sx={{ color: (theme) => theme.palette.text.white }}
           >
             {title}
           </Typography>
         </Box>
       )}
 
-      <Box sx={{ px: 2, py: 1 }}>
-  {props.children ?? description}
+     
 
+<Box
+        sx={{
+          px: 2,
+          py: 1,
+          display: 'flex',
+          justifyContent: contentJustifyMap[contentAlign] || 'center',
+          width: '100%'
+        }}
+      >
+        {props.children ?? (
+          <Typography level="body-sm" sx={{ color: 'text.secondary' }}>
+            {description}
+          </Typography>
+        )}
       </Box>
+
+
+
+
     </Card>
   );
 };

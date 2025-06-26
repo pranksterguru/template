@@ -97,7 +97,7 @@ const Sidebar = ({ open }) => {
                     }}
                     selected={isSelected}
                   >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                       <ListItemDecorator sx={{ minWidth: 0, color: 'primary.900' }}>
                         {icon}
                       </ListItemDecorator>
