@@ -1,0 +1,57 @@
+import time
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import deque
+
+class LimitedThreadPoolExecutor:
+    def __init__(self, max_workers=20, max_jobs_per_minute=20):
+        self.executor = ThreadPoolExecutor(max_workers=max_workers)
+        self.max_jobs = max_jobs_per_minute
+        self.period = 60
+        self.lock = threading.Lock()
+        self.timestamps = deque()
+        self.semaphore = threading.Semaphore(max_workers)
+
+    def submit(self, fn, *args, **kwargs):
+        while True:
+            with self.lock:
+                now = time.time()
+                while self.timestamps and self.timestamps[0] <= now - self.period:
+                    self.timestamps.popleft()
+                if len(self.timestamps) < self.max_jobs:
+                    self.timestamps.append(now)
+                    break
+            time.sleep(0.1)
+
+        def wrapped(*args, **kwargs):
+            with self.semaphore:
+                return fn(*args, **kwargs)
+
+        return self.executor.submit(wrapped, *args, **kwargs)
+
+    def shutdown(self, wait=True):
+        self.executor.shutdown(wait)
+
+if __name__ == "__main__":
+    import random
+
+    def task(n):
+        time.sleep(random.uniform(0.5, 2))
+        return f"Result from task {n}"
+
+    pool = LimitedThreadPoolExecutor()
+
+    futures = []
+    for i in range(30):
+        future = pool.submit(task, i)
+        futures.append(future)
+
+    results = []
+    for future in as_completed(futures):
+        results.append(future.result())
+
+    pool.shutdown()
+
+    print("All results:")
+    for r in results:
+        print(r)
