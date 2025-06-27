@@ -116,7 +116,7 @@ const Sidebar = ({ open }) => {
                     justifyContent: 'flex-start',
                     px: 4,
                     bgcolor: location.pathname === childPath ? 'primary.50' : 'inherit',
-                    '&:hover': { bgcolor: 'primary.100' }
+                    '&:hover': { bgcolor: 'primary.200' }
                   }}
                 >
                   <ListItemButton
