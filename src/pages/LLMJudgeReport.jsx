@@ -6,6 +6,7 @@ import AccordionSummary from '@mui/joy/AccordionSummary';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import MetricBar from '../components/MetricBar';
 import inputData from './input.json';
+import InfoCard from '../components/InfoCard';
 
 const LLMJudgeReport = () => {
   const metricBars = [];
@@ -81,9 +82,19 @@ const LLMJudgeReport = () => {
         ))}
       </Box>
 
-      <Box>
+<Box sx={{ width: '100%', mt: 10 }}>
+
+      <InfoCard
+        icon="info"
+        title="Test Evaluation Details"
+
+        contentAlign="center">
+
         {detailAccordions}
-      </Box>
+      </InfoCard>
+</Box>
+
+
     </Box>
   );
 };

@@ -96,7 +96,6 @@ const InfoCard = (props) => {
       >
         <Box
           sx={{
-            display: 'flex',
             justifyContent: contentJustifyMap[contentAlign] || 'center',
             width: '100%',
           }}
