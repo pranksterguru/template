@@ -6,6 +6,8 @@ import MetricBar from '../components/MetricBar';
 import InfoCard from '../components/InfoCard';
 import inputData from './input.json';
 import LLMJudgeReportAccordion from '../components/LLMJudgeReportAccordion';
+import Card from '@mui/joy/Card';
+import LLMReportControls from '../components/LLMJudgeReportControl';
 
 const LLMJudgeReport = () => {
   const [expandedKeys, setExpandedKeys] = useState({});
@@ -147,59 +149,25 @@ const LLMJudgeReport = () => {
         ))}
       </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mb: 2, flexWrap: 'wrap' }}>
-        <Button onClick={expandAll}>Expand All Details</Button>
-        <Button onClick={collapseAll}>Collapse All Details</Button>
-        <Button onClick={resetAll}>Reset</Button>
-        <Button
-          onClick={() => {
-            setFilterColor('red');
-            setFilterMetricColor(null);
-            console.log('Filter by status red');
-          }}
-          sx={{
-            backgroundColor: '#c62828',
-            color: '#fff',
-            '&:hover': { backgroundColor: '#c62828' }
-          }}
-        >
-          Red
-        </Button>
-        <Button
-          onClick={() => {
-            setFilterColor('amber');
-            setFilterMetricColor(null);
-            console.log('Filter by status amber');
-          }}
-          sx={{
-            backgroundColor: '#ff8f00',
-            color: '#fff',
-            '&:hover': { backgroundColor: '#ff8f00' }
-          }}
-        >
-          Amber
-        </Button>
-        <Button
-          onClick={() => {
-            setFilterColor('green');
-            setFilterMetricColor(null);
-            console.log('Filter by status green');
-          }}
-          sx={{
-            backgroundColor: '#2e7d32',
-            color: '#fff',
-            '&:hover': { backgroundColor: '#2e7d32' }
-          }}
-        >
-          Green
-        </Button>
-      </Box>
 
-      <Box sx={{ width: '100%', mt: 2 }}>
-        <InfoCard icon="info" title="Test Evaluation Details" contentAlign="center">
-          <Box sx={{ width: '100%' }}>{detailAccordions}</Box>
-        </InfoCard>
-      </Box>
+
+<Box sx={{ width: '100%', mt: 8 }}>
+  <InfoCard icon="info" title="Test Evaluation Details" contentAlign="center">
+    <LLMReportControls
+      onExpandAll={expandAll}
+      onCollapseAll={collapseAll}
+      onReset={resetAll}
+      onFilter={(color) => {
+        setFilterColor(color);
+        setFilterMetricColor(null);
+        console.log(`Filter by status ${color}`);
+      }}
+    />
+    <Box sx={{ width: '100%' }}>{detailAccordions}</Box>
+  </InfoCard>
+</Box>
+
+
     </Box>
   );
 };
