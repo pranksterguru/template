@@ -1,6 +1,7 @@
 const properties = {
   api_login: 'http:somelogin',
   api_evaluate: 'http:somelogin',
+
     demoValues: {
     username: 'demo-user',
     password: '********',
@@ -33,7 +34,13 @@ const properties = {
       thresholds: { red: 30, amber: 70, green: 100 }
     },
     
-  ]
+  ],
+
+  llm_model_name: "model name",
+  aws_region: "aws region",
+  evaluation_standards: "evaluation standards",
+
+
 };
 
 export default properties;

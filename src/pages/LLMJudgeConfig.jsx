@@ -10,13 +10,12 @@ import properties from '../properties';
 
 const metricData = properties.metricData;
 
-
 const LLMJudgeConfig = () => {
-  const [llmModel, setLlmModel] = useState('');
-  const [awsRegion, setAwsRegion] = useState('');
+  const [llmModel, setLlmModel] = useState(properties.llm_model_name || '');
+  const [awsRegion, setAwsRegion] = useState(properties.aws_region || '');
   const [concurrency, setConcurrency] = useState(3);
-  const [requestsPerMinute, setRequestsPerMinute] =  useState(3);
-  const [evaluationText, setEvaluationText] = useState('');
+  const [requestsPerMinute, setRequestsPerMinute] = useState(3);
+  const [evaluationText, setEvaluationText] = useState(properties.evaluation_standards || '');
   const [miscPrompt, setMiscPrompt] = useState('');
   const [excelFile, setExcelFile] = useState(null);
   const metricsRef = useRef();
@@ -37,7 +36,6 @@ const LLMJudgeConfig = () => {
   return (
     <InfoCard icon="info" title="Configure Evaluation" contentAlign="center">
       <Grid container spacing={2} sx={{ width: '100%' }}>
-        {/* Left Column */}
         <Grid xs={12} sm={6}>
           <Typography level="body-sm" sx={{ mb: 0.5 }}>
             LLM Model Name
@@ -95,7 +93,6 @@ const LLMJudgeConfig = () => {
           />
         </Grid>
 
-        {/* Right Column */}
         <Grid xs={12} sm={6}>
           <Typography level="body-sm" sx={{ mb: 1 }}>
             Select Metrics
@@ -113,7 +110,6 @@ const LLMJudgeConfig = () => {
           />
         </Grid>
 
-        {/* Evaluation Standards - full row, just above button */}
         <Grid xs={12}>
           <Typography level="body-sm" sx={{ mb: 0.5 }}>
             Evaluation Standards
@@ -128,7 +124,7 @@ const LLMJudgeConfig = () => {
         </Grid>
 
         <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Button  onClick={handleEvaluate}>Evaluate</Button>
+          <Button onClick={handleEvaluate}>Evaluate</Button>
         </Grid>
       </Grid>
     </InfoCard>
