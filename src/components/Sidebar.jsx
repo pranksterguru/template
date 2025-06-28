@@ -67,7 +67,9 @@ const Sidebar = ({ open }) => {
         }}
       >
         {items.map(({ text, icon, path, children }) => {
-          const isExpanded = openMenus[text];
+          const isExpanded =
+  openMenus[text] ||
+  (children && children.some((child) => child.path === location.pathname));
           const isSelected = location.pathname === path;
 
           return (
@@ -83,9 +85,18 @@ const Sidebar = ({ open }) => {
                   }}
                 >
                   <ListItemButton
-                    onClick={() => children ? toggleMenu(text) : null}
-                    component={children ? 'div' : NavLink}
+                    onClick={() => {
+                      if (children) {
+                        if (open) {
+                          toggleMenu(text);
+                        } else {
+                          window.location.href = children[0].path;
+                        }
+                      }
+                    }}
+                    component={!children ? NavLink : 'div'}
                     to={!children ? path : undefined}
+
                     sx={{
                       borderRadius: 8,
                       flexDirection: open ? 'row' : 'column',

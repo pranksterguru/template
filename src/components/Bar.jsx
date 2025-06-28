@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/joy/Card';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
@@ -9,22 +9,44 @@ const BarCard = ({
   red = 30,
   amber = 40,
   green = 30,
-  height = 20
+  height = 30
 }) => {
   const total = red + amber + green;
   const percent = (val) => `${(val / total) * 100}%`;
 
+  const [animatedWidths, setAnimatedWidths] = useState({
+    red: '0%',
+    amber: '0%',
+    green: '0%'
+  });
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAnimatedWidths({
+        red: percent(red),
+        amber: percent(amber),
+        green: percent(green)
+      });
+    }, 100); // slight delay to trigger transition
+
+    return () => clearTimeout(timeout);
+  }, [red, amber, green]);
+
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        width: '100%',
-        maxWidth: 500,
-        borderRadius: 'lg',
-        p: 2,
-        boxShadow: 'md'
-      }}
-    >
+<Card
+  variant="outlined"
+  sx={{
+    width: '100%',
+    maxWidth: 500,
+    borderRadius: 'lg',
+    p: 2,
+    boxShadow: 'md',
+    transition: 'box-shadow 0.3s ease',
+    '&:hover': {
+      boxShadow: (theme) => `0 0 8px ${theme.palette.primary.outlinedBorder}99`  
+    }
+  }}
+>
       <Typography level="title-md" sx={{ mb: 1 }}>
         {title}
       </Typography>
@@ -40,13 +62,31 @@ const BarCard = ({
         }}
       >
         <Tooltip title={`Red: ${red}`}>
-          <Box sx={{ width: percent(red), bgcolor: '#c62828' }} />
+          <Box
+            sx={{
+              width: animatedWidths.red,
+              bgcolor: '#c62828',
+              transition: 'width 2s ease'
+            }}
+          />
         </Tooltip>
         <Tooltip title={`Amber: ${amber}`}>
-          <Box sx={{ width: percent(amber), bgcolor: '#ff8f00' }} />
+          <Box
+            sx={{
+              width: animatedWidths.amber,
+              bgcolor: '#ff8f00',
+              transition: 'width 2s ease 0.3s'
+            }}
+          />
         </Tooltip>
         <Tooltip title={`Green: ${green}`}>
-          <Box sx={{ width: percent(green), bgcolor: '#2e7d32' }} />
+          <Box
+            sx={{
+              width: animatedWidths.green,
+              bgcolor: '#2e7d32',
+              transition: 'width 2s ease 0.6s'
+            }}
+          />
         </Tooltip>
       </Box>
     </Card>

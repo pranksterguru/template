@@ -48,6 +48,11 @@ const LoginPage = () => {
       // const result = await res.json();
       //if (result.status === 'success') {
       if (1==1) {
+        sessionStorage.setItem('username',form.username)
+        sessionStorage.setItem('password',form.password)
+        sessionStorage.setItem('account',form.account)
+        sessionStorage.setItem('role',form.role)
+
         navigate('/dashboard');
 
       } else {
