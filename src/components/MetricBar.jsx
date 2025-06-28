@@ -9,7 +9,8 @@ const MetricBar = ({
   red = 30,
   amber = 30,
   green = 30,
-  height = 20
+  height = 20,
+  onSegmentClick = () => {}
 }) => {
   const total = red + amber + green;
 
@@ -65,44 +66,39 @@ const MetricBar = ({
           boxShadow: 'sm'
         }}
       >
-        <CustomTooltip
-          header="Red"
-          content={`Count: ${red}\n Percentage: ${getPercent(red)}%`}
-        >
+        <CustomTooltip header="Red" content={`Count: ${red}\n Percentage: ${getPercent(red)}%`}>
           <Box
             sx={{
               width: animatedWidths.red,
               bgcolor: 'rgba(198, 40, 40, 1)',
               transition: 'width 5s ease 0.3s',
+              cursor: 'pointer'
             }}
+            onClick={() => onSegmentClick('red')}
           />
         </CustomTooltip>
 
-        <CustomTooltip
-          header="Amber"
-          content={`Count: ${amber}\n Percentage: ${getPercent(amber)}%`}
-
-        >
+        <CustomTooltip header="Amber" content={`Count: ${amber}\n Percentage: ${getPercent(amber)}%`}>
           <Box
             sx={{
               width: animatedWidths.amber,
               bgcolor: 'rgba(255, 143, 0, 1)',
               transition: 'width 8s ease 0.6s',
+              cursor: 'pointer'
             }}
+            onClick={() => onSegmentClick('amber')}
           />
         </CustomTooltip>
 
-        <CustomTooltip
-          header="Green"
-          content={`Count: ${green}\n Percentage: ${getPercent(green)}%`}
-
-        >
+        <CustomTooltip header="Green" content={`Count: ${green}\n Percentage: ${getPercent(green)}%`}>
           <Box
             sx={{
               width: animatedWidths.green,
               bgcolor: 'rgba(46, 125, 50, 1)',
               transition: 'width 4s ease 0.9s',
+              cursor: 'pointer'
             }}
+            onClick={() => onSegmentClick('green')}
           />
         </CustomTooltip>
       </Box>
