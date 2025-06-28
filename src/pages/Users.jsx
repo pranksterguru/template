@@ -1,10 +1,9 @@
 import React, { useRef } from 'react';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import Bar from '../components/Bar';
 import InfoCard from '../components/InfoCard';
 import StatsCard from '../components/CustomControls';
-import Metrics from '../components/Metrics'; // adjust path if necessary
+import MetricBar from '../components/MetricBar';
 import Button from '@mui/joy/Button';
 
 const Users = () => {
@@ -37,7 +36,7 @@ const Users = () => {
     <Box sx={{ maxWidth: 600, mt: 4 }}>
 
 
-      <Bar red={20} amber={30} green={50} />
+      <MetricBar red={20} amber={30} green={50} />
 
         <InfoCard
           icon="info"
@@ -54,15 +53,6 @@ const Users = () => {
         <StatsCard title="Active" value={50} colour="green" size="large" />
       </Box>
 
-      <Box sx={{ mt: 4 }}>
-        <Typography level="title-md" sx={{ mb: 1 }}>
-          Metric Configuration
-        </Typography>
-        <Metrics ref={metricsRef} metricData={metricData} />
-        <Button onClick={handleGetSelectedMetrics} sx={{ mt: 2 }}>
-          Log Selected Metrics
-        </Button>
-      </Box>
     </Box>
   );
 };
