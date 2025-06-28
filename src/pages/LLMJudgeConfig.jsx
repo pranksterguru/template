@@ -20,18 +20,55 @@ const LLMJudgeConfig = () => {
   const [excelFile, setExcelFile] = useState(null);
   const metricsRef = useRef();
 
-  const handleEvaluate = () => {
-    const selectedMetrics = metricsRef.current?.getValue() || [];
-    console.log('Evaluating with:');
-    console.log('LLM Model:', llmModel);
-    console.log('AWS Region:', awsRegion);
-    console.log('Concurrency:', concurrency);
-    console.log('Requests Per Minute:', requestsPerMinute);
-    console.log('Evaluation Text:', evaluationText);
-    console.log('Misc Prompt:', miscPrompt);
-    console.log('Uploaded File:', excelFile?.name || 'No file selected');
-    console.log('Selected Metrics:', selectedMetrics);
-  };
+const handleEvaluate = async () => {
+  const selectedMetrics = metricsRef.current?.getValue() || [];
+
+  if (!excelFile) {
+    alert('Please upload an Excel file');
+    return;
+  }
+
+  if (selectedMetrics.length === 0) {
+    alert('Please select at least one metric');
+    return;
+  }
+
+  try {
+    const formData = new FormData();
+    formData.append('llm_model', llmModel);
+    formData.append('input_excel', excelFile);
+    formData.append('metrics', JSON.stringify(selectedMetrics));
+    formData.append('qe_standard', evaluationText);
+    formData.append('concurrency', concurrency.toString());
+    formData.append('permiute', requestsPerMinute.toString());
+    formData.append('aws_account', properties.demoValues.account);
+    formData.append('aws_role', properties.demoValues.role);
+    formData.append('region', awsRegion);
+    formData.append('misc_promt', miscPrompt);
+
+    const response = await fetch(properties.api_evaluate, {
+      method: 'POST',
+      headers: {
+        'aws_username': properties.demoValues.username,
+        'aws_password': properties.demoValues.password
+      },
+      body: formData
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Evaluation Result:', result);
+    alert('Evaluation completed successfully!');
+  } catch (error) {
+    console.error('Error during evaluation:', error);
+    alert(`Error: ${error.message}`);
+  }
+};
+
+
 
   return (
     <InfoCard icon="info" title="Configure Evaluation" contentAlign="center">
