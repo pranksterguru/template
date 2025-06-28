@@ -1,0 +1,101 @@
+{
+    "result": [
+        {
+            "overall": {
+                "metrics": {
+                    "FACTUAL_ACCURACY": {
+                        "Red": 10,
+                        "Green": 2,
+                        "Amber": 5
+                    },
+                    "COMPLETENESS": {
+                        "Red": 12,
+                        "Green": 10,
+                        "Amber": 5
+                    },
+                    "ANSWER_RELEVANCE": {
+                       "Red": 12,
+                        "Green": 10,
+                        "Amber": 5
+                    },
+                    "GROUNDEDNESS": {
+                        "Red": 12,
+                        "Green": 2,
+                        "Amber": 5
+                    },
+                    "COHERENCE": {
+                        "Red": 12,
+                        "Green": 1,
+                        "Amber": 5
+                    },
+                    "COMPLIANCE": {
+                         "Red": 2,
+                        "Green": 10,
+                        "Amber": 5
+                    }
+                }
+            }
+        },
+        {
+            "details": [
+                {
+                    "overall rating": "Red",
+                    "test name": "test1",
+                    "elements": [
+                        {
+                            "type": "cards",
+                            "columns": 3,
+                            "cards": [
+                                {
+                                    "name": "FACTUAL ACCURACY",
+                                    "score": "3",
+                                    "colour": "Green"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "AI Generated",
+                                    "content": "Text"
+                                },
+                                {
+                                    "title": "Input to AI",
+                                    "content": "This will later be injected.. this has a lot of special characters now"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "EVALUATIONS",
+                                    "content": "Text"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "REASONS",
+                                    "content": "Text"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "IMPROVEMENTS",
+                                    "content": "Text"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

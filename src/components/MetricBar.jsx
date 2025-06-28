@@ -4,10 +4,10 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Tooltip from '@mui/joy/Tooltip';
 
-const BarCard = ({
+const MetricBar = ({
   title = 'Threshold Overview',
   red = 30,
-  amber = 40,
+  amber = 30,
   green = 30,
   height = 30
 }) => {
@@ -27,26 +27,29 @@ const BarCard = ({
         amber: percent(amber),
         green: percent(green)
       });
-    }, 100); // slight delay to trigger transition
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, [red, amber, green]);
 
   return (
-<Card
-  variant="outlined"
-  sx={{
-    width: '100%',
-    maxWidth: 500,
-    borderRadius: 'lg',
-    p: 2,
-    boxShadow: 'md',
-    transition: 'box-shadow 0.3s ease',
-    '&:hover': {
-      boxShadow: (theme) => `0 0 8px ${theme.palette.primary.outlinedBorder}99`  
-    }
-  }}
->
+    <Card
+      variant="outlined"
+      sx={{
+        width: '100%',
+        height: '100%',
+        borderRadius: 'lg',
+        p: 1.5, // reduced padding
+        boxShadow: 'sm',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1, // tighter vertical spacing
+        transition: 'box-shadow 0.3s ease',
+        '&:hover': {
+          boxShadow: (theme) => `0 0 8px ${theme.palette.primary.outlinedBorder}99`
+        }
+      }}
+    >
       <Typography level="title-md" sx={{ mb: 1 }}>
         {title}
       </Typography>
@@ -93,4 +96,4 @@ const BarCard = ({
   );
 };
 
-export default BarCard;
+export default MetricBar;
