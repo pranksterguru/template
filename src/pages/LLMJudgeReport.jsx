@@ -15,7 +15,8 @@ const LLMJudgeReport = () => {
   const [expandedKeys, setExpandedKeys] = useState({});
   const [filterColor, setFilterColor] = useState(null);
   const [filterMetricColor, setFilterMetricColor] = useState(null);
-  const inputData = location.state?.inputData || inputJson || null;
+  const location = useLocation();
+  const inputData = location?.state?.inputData ?? inputJson ?? null;
 
 
   const handleMetricClick = (metricName, color) => {
