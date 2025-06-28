@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
+import Button from '@mui/joy/Button';
 import MetricBar from '../components/MetricBar';
 import InfoCard from '../components/InfoCard';
 import inputData from './input.json';
 import LLMJudgeReportAccordion from '../components/LLMJudgeReportAccordion';
 
 const LLMJudgeReport = () => {
+  const [expandedKeys, setExpandedKeys] = useState({});
+
   const metricBars = [];
 
   inputData.result.forEach((entry, index) => {
@@ -30,17 +33,45 @@ const LLMJudgeReport = () => {
   inputData.result.forEach((entry, index) => {
     if (Array.isArray(entry.details)) {
       entry.details.forEach((detail, i) => {
+        const key = `accordion-${index}-${i}`;
         detailAccordions.push(
           <LLMJudgeReportAccordion
-            key={`accordion-${index}-${i}`}
+            key={key}
             detail={detail}
             index={index}
             detailIndex={i}
+            expanded={!!expandedKeys[key]}
+            onToggle={() =>
+              setExpandedKeys((prev) => ({
+                ...prev,
+                [key]: !prev[key],
+              }))
+            }
           />
         );
       });
     }
   });
+
+  const expandAll = () => {
+    const all = {};
+    inputData.result.forEach((entry, index) => {
+      if (Array.isArray(entry.details)) {
+        entry.details.forEach((_, i) => {
+          all[`accordion-${index}-${i}`] = true;
+        });
+      }
+    });
+    setExpandedKeys(all);
+  };
+
+  const collapseAll = () => {
+    setExpandedKeys({});
+  };
+
+  const resetAll = () => {
+    setExpandedKeys({});
+  };
 
   return (
     <Box sx={{ p: 3 }}>
@@ -61,7 +92,13 @@ const LLMJudgeReport = () => {
         ))}
       </Box>
 
-      <Box sx={{ width: '100%', mt: 10 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mb: 2 }}>
+        <Button onClick={expandAll}>Expand All Details</Button>
+        <Button onClick={collapseAll}>Collapse All Details</Button>
+        <Button onClick={resetAll}>Reset</Button>
+      </Box>
+
+      <Box sx={{ width: '100%', mt: 2 }}>
         <InfoCard
           icon="info"
           title="Test Evaluation Details"

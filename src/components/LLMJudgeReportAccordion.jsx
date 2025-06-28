@@ -6,14 +6,15 @@ import AccordionSummary from '@mui/joy/AccordionSummary';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import Card from '@mui/joy/Card';
 import StatsCard from './Statscard';
-import StatusSmiley from './StatusSmiley'; // make sure path is correct
+import StatusSmiley from './StatusSmiley';
 
-const LLMJudgeReportAccordion = ({ detail, index, detailIndex }) => {
-  const status = (detail.overall_rating || 'green').toLowerCase(); // default to green
+const LLMJudgeReportAccordion = ({ detail, index, detailIndex, expanded, onToggle }) => {
+  const status = (detail.overall_rating || 'green').toLowerCase();
 
   return (
     <Accordion
-      key={`accordion-${index}-${detailIndex}`}
+      expanded={expanded}
+      onChange={onToggle}
       sx={{
         mb: 1.5,
         borderRadius: 'sm',
@@ -29,22 +30,7 @@ const LLMJudgeReportAccordion = ({ detail, index, detailIndex }) => {
           minHeight: 48,
           px: 2,
           py: 1.5,
-          borderTop: '1px groove',
-backgroundColor: 'neutral.solidBg',
-
-          '&.MuiAccordionSummary-root:hover': {
-            backgroundColor: 'transparent !important',
-          },
-          '& .MuiAccordionSummary-button': {
-            backgroundColor: 'transparent !important',
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '100%',
-            alignItems: 'center',
-          },
-          '& .MuiAccordionSummary-button:hover': {
-            backgroundColor: 'transparent !important',
-          },
+          borderBottom: '1px groove',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>

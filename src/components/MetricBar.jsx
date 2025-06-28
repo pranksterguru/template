@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Card from '@mui/joy/Card';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import Tooltip from '@mui/joy/Tooltip';
+import CustomTooltip from './CustomTooltip';
 
 const MetricBar = ({
   title = 'Threshold Overview',
   red = 30,
   amber = 30,
   green = 30,
-  height = 30
+  height = 20
 }) => {
   const total = red + amber + green;
-  const percent = (val) => `${(val / total) * 100}%`;
+
+  const getPercent = (val) => ((val / total) * 100).toFixed(1);
 
   const [animatedWidths, setAnimatedWidths] = useState({
     red: '0%',
@@ -23,9 +24,9 @@ const MetricBar = ({
   useEffect(() => {
     const timeout = setTimeout(() => {
       setAnimatedWidths({
-        red: percent(red),
-        amber: percent(amber),
-        green: percent(green)
+        red: `${getPercent(red)}%`,
+        amber: `${getPercent(amber)}%`,
+        green: `${getPercent(green)}%`
       });
     }, 100);
 
@@ -39,11 +40,11 @@ const MetricBar = ({
         width: '100%',
         height: '100%',
         borderRadius: 'lg',
-        p: 1.5, // reduced padding
+        p: 1.5,
         boxShadow: 'sm',
         display: 'flex',
         flexDirection: 'column',
-        gap: 1, // tighter vertical spacing
+        gap: 1,
         transition: 'box-shadow 0.3s ease',
         '&:hover': {
           boxShadow: (theme) => `0 0 8px ${theme.palette.primary.outlinedBorder}99`
@@ -64,34 +65,46 @@ const MetricBar = ({
           boxShadow: 'sm'
         }}
       >
-<Tooltip title={`Red: ${red}`}>
-  <Box
-    sx={{
-      width: animatedWidths.red,
-      bgcolor: 'rgba(198, 40, 40, 0.7)', // #c62828 with 70% opacity
-      transition: 'width 5s ease 0.3s',
-    }}
-  />
-</Tooltip>
-<Tooltip title={`Amber: ${amber}`}>
-  <Box
-    sx={{
-      width: animatedWidths.amber,
-      bgcolor: 'rgba(255, 143, 0, 0.7)', // #ff8f00 with 70% opacity
-      transition: 'width 8s ease 0.6s',
-    }}
-  />
-</Tooltip>
-<Tooltip title={`Green: ${green}`}>
-  <Box
-    sx={{
-      width: animatedWidths.green,
-      bgcolor: 'rgba(46, 125, 50, 0.7)', // #2e7d32 with 70% opacity
-      transition: 'width 4s ease 0.9s',
-    }}
-  />
-</Tooltip>
+        <CustomTooltip
+          header="Red"
+          content={`Count: ${red}\n Percentage: ${getPercent(red)}%`}
+        >
+          <Box
+            sx={{
+              width: animatedWidths.red,
+              bgcolor: 'rgba(198, 40, 40, 0.7)',
+              transition: 'width 5s ease 0.3s',
+            }}
+          />
+        </CustomTooltip>
 
+        <CustomTooltip
+          header="Amber"
+          content={`Count: ${amber}\n Percentage: ${getPercent(amber)}%`}
+
+        >
+          <Box
+            sx={{
+              width: animatedWidths.amber,
+              bgcolor: 'rgba(255, 143, 0, 0.7)',
+              transition: 'width 8s ease 0.6s',
+            }}
+          />
+        </CustomTooltip>
+
+        <CustomTooltip
+          header="Green"
+          content={`Count: ${green}\n Percentage: ${getPercent(green)}%`}
+
+        >
+          <Box
+            sx={{
+              width: animatedWidths.green,
+              bgcolor: 'rgba(46, 125, 50, 0.7)',
+              transition: 'width 4s ease 0.9s',
+            }}
+          />
+        </CustomTooltip>
       </Box>
     </Card>
   );

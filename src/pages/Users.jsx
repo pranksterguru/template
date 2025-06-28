@@ -6,6 +6,10 @@ import StatsCard from '../components/Statscard';
 import MetricBar from '../components/MetricBar';
 import Button from '@mui/joy/Button';
 import StatusSmiley from '../components/StatusSmiley';
+import CustomTooltip from '../components/CustomTooltip';
+import IconButton from '@mui/joy/IconButton';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
+
 
 const Users = () => {
   const metricsRef = useRef();
@@ -38,15 +42,23 @@ const Users = () => {
 
 
       <MetricBar red={20} amber={30} green={50} />
-<StatusSmiley status="red" />
+      <StatusSmiley status="red" />
 
-        <InfoCard
-          icon="info"
-          title="User Info"
-          description="Summary of the current user base activity."
-          hoverEffect
-          contentAlign="left"
-        />
+      <InfoCard
+        icon="info"
+        title="User Info"
+        description="Summary of the current user base activity."
+        hoverEffect
+        contentAlign="left"
+      />
+      <CustomTooltip
+        header="Explanation"
+        content="This metric shows how well the model performs."
+      >
+        <IconButton size="sm" variant="plain" color="neutral">
+          <InfoOutlined />
+        </IconButton>
+      </CustomTooltip>
 
 
       <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
