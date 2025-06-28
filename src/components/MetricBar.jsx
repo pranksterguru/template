@@ -72,7 +72,7 @@ const MetricBar = ({
           <Box
             sx={{
               width: animatedWidths.red,
-              bgcolor: 'rgba(198, 40, 40, 0.7)',
+              bgcolor: 'rgba(198, 40, 40, 1)',
               transition: 'width 5s ease 0.3s',
             }}
           />
@@ -86,7 +86,7 @@ const MetricBar = ({
           <Box
             sx={{
               width: animatedWidths.amber,
-              bgcolor: 'rgba(255, 143, 0, 0.7)',
+              bgcolor: 'rgba(255, 143, 0, 1)',
               transition: 'width 8s ease 0.6s',
             }}
           />
@@ -100,7 +100,7 @@ const MetricBar = ({
           <Box
             sx={{
               width: animatedWidths.green,
-              bgcolor: 'rgba(46, 125, 50, 0.7)',
+              bgcolor: 'rgba(46, 125, 50, 1)',
               transition: 'width 4s ease 0.9s',
             }}
           />

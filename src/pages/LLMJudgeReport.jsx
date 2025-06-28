@@ -9,6 +9,7 @@ import LLMJudgeReportAccordion from '../components/LLMJudgeReportAccordion';
 
 const LLMJudgeReport = () => {
   const [expandedKeys, setExpandedKeys] = useState({});
+  const [filterColor, setFilterColor] = useState(null);
 
   const metricBars = [];
 
@@ -33,22 +34,25 @@ const LLMJudgeReport = () => {
   inputData.result.forEach((entry, index) => {
     if (Array.isArray(entry.details)) {
       entry.details.forEach((detail, i) => {
-        const key = `accordion-${index}-${i}`;
-        detailAccordions.push(
-          <LLMJudgeReportAccordion
-            key={key}
-            detail={detail}
-            index={index}
-            detailIndex={i}
-            expanded={!!expandedKeys[key]}
-            onToggle={() =>
-              setExpandedKeys((prev) => ({
-                ...prev,
-                [key]: !prev[key],
-              }))
-            }
-          />
-        );
+        const status = (detail.overall_rating || '').toLowerCase();
+        if (!filterColor || status === filterColor) {
+          const key = `accordion-${index}-${i}`;
+          detailAccordions.push(
+            <LLMJudgeReportAccordion
+              key={key}
+              detail={detail}
+              index={index}
+              detailIndex={i}
+              expanded={!!expandedKeys[key]}
+              onToggle={() =>
+                setExpandedKeys((prev) => ({
+                  ...prev,
+                  [key]: !prev[key],
+                }))
+              }
+            />
+          );
+        }
       });
     }
   });
@@ -57,8 +61,11 @@ const LLMJudgeReport = () => {
     const all = {};
     inputData.result.forEach((entry, index) => {
       if (Array.isArray(entry.details)) {
-        entry.details.forEach((_, i) => {
-          all[`accordion-${index}-${i}`] = true;
+        entry.details.forEach((detail, i) => {
+          const status = (detail.overall_rating || '').toLowerCase();
+          if (!filterColor || status === filterColor) {
+            all[`accordion-${index}-${i}`] = true;
+          }
         });
       }
     });
@@ -71,6 +78,7 @@ const LLMJudgeReport = () => {
 
   const resetAll = () => {
     setExpandedKeys({});
+    setFilterColor(null);
   };
 
   return (
@@ -92,11 +100,49 @@ const LLMJudgeReport = () => {
         ))}
       </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mb: 2 }}>
-        <Button onClick={expandAll}>Expand All Details</Button>
-        <Button onClick={collapseAll}>Collapse All Details</Button>
-        <Button onClick={resetAll}>Reset</Button>
-      </Box>
+<Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mb: 2, flexWrap: 'wrap' }}>
+  <Button onClick={expandAll}>Expand All Details</Button>
+  <Button onClick={collapseAll}>Collapse All Details</Button>
+  <Button onClick={resetAll}>Reset</Button>
+  <Button
+    onClick={() => setFilterColor('red')}
+    sx={{
+      backgroundColor: '#c62828',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#c62828'
+      }
+    }}
+  >
+    Red
+  </Button>
+  <Button
+    onClick={() => setFilterColor('amber')}
+    sx={{
+      backgroundColor: '#ff8f00',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#ff8f00'
+      }
+    }}
+  >
+    Amber
+  </Button>
+  <Button
+    onClick={() => setFilterColor('green')}
+    sx={{
+      backgroundColor: '#2e7d32',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#2e7d32'
+      }
+    }}
+  >
+    Green
+  </Button>
+</Box>
+
+
 
       <Box sx={{ width: '100%', mt: 2 }}>
         <InfoCard
