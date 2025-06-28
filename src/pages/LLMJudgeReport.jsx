@@ -1,17 +1,14 @@
 import React from 'react';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import Accordion from '@mui/joy/Accordion';
-import AccordionSummary from '@mui/joy/AccordionSummary';
-import AccordionDetails from '@mui/joy/AccordionDetails';
 import MetricBar from '../components/MetricBar';
-import inputData from './input.json';
 import InfoCard from '../components/InfoCard';
+import inputData from './input.json';
+import LLMJudgeReportAccordion from '../components/LLMJudgeReportAccordion';
 
 const LLMJudgeReport = () => {
   const metricBars = [];
 
-  // Extract overall metrics
   inputData.result.forEach((entry, index) => {
     if (entry.overall?.metrics) {
       Object.entries(entry.overall.metrics).forEach(([metricName, values]) => {
@@ -28,36 +25,18 @@ const LLMJudgeReport = () => {
     }
   });
 
-  // Extract test details
   const detailAccordions = [];
 
   inputData.result.forEach((entry, index) => {
     if (Array.isArray(entry.details)) {
       entry.details.forEach((detail, i) => {
         detailAccordions.push(
-          <Accordion
+          <LLMJudgeReportAccordion
             key={`accordion-${index}-${i}`}
-            sx={{
-              mb: 1.5,
-              borderRadius: 'sm',
-              boxShadow: 'sm',
-              transition: 'box-shadow 0.2s ease',
-              '&:hover': {
-                boxShadow: 'md',
-              },
-            }}
-          >
-            <AccordionSummary>
-              <Typography level="title-sm" fontWeight="md">
-                {detail['test_name']}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={{ px: 2, pb: 1 }}>
-              <Typography level="body-sm" color="neutral">
-                Accordion content goes here.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
+            detail={detail}
+            index={index}
+            detailIndex={i}
+          />
         );
       });
     }
@@ -66,7 +45,7 @@ const LLMJudgeReport = () => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography level="h4" sx={{ mb: 2 }}>
-        LLM Judge Report
+        LLM as Judge Report
       </Typography>
 
       <Box
@@ -82,19 +61,15 @@ const LLMJudgeReport = () => {
         ))}
       </Box>
 
-<Box sx={{ width: '100%', mt: 10 }}>
-
-      <InfoCard
-        icon="info"
-        title="Test Evaluation Details"
-
-        contentAlign="center">
-
-        {detailAccordions}
-      </InfoCard>
-</Box>
-
-
+      <Box sx={{ width: '100%', mt: 10 }}>
+        <InfoCard
+          icon="info"
+          title="Test Evaluation Details"
+          contentAlign="center"
+        >
+          <Box sx={{ width: '100%' }}>{detailAccordions}</Box>
+        </InfoCard>
+      </Box>
     </Box>
   );
 };

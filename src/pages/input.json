@@ -39,12 +39,12 @@
         {
             "details": [
                 {
-                    "overall rating": "Red",
+                    "overall_rating": "Red",
                     "test_name": "Test1",
                     "elements": [
                         {
                             "type": "cards",
-                            "columns": 3,
+                            "columns": 6,
                             "cards": [
                                 {
                                     "name": "FACTUAL ACCURACY",
@@ -53,11 +53,11 @@
                                 }, {
                                     "name": "FACTUAL ACCURACY",
                                     "score": "3",
-                                    "colour": "Green"
+                                    "colour": "Red"
                                 }, {
                                     "name": "FACTUAL ACCURACY",
                                     "score": "3",
-                                    "colour": "Green"
+                                    "colour": "Amber"
                                 }
                             ]
                         },
@@ -104,7 +104,7 @@
                     ]
                 },
                 {
-                    "overall rating": "Green",
+                    "overall_rating": "Green",
                     "test_name": "Test2",
                     "elements": [
                         {
@@ -161,7 +161,7 @@
                     ]
                 },
                 {
-                    "overall rating": "Amber",
+                    "overall_rating": "Amber",
                     "test_name": "Test3",
                     "elements": [
                         {

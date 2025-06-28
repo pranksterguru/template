@@ -53,230 +53,81 @@ const StatsCard = ({ title, value, colour = 'green', size = 'medium' }) => {
   const [playOnce, setPlayOnce] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setPlayOnce(false), 2000); // just once on mount
+    const timer = setTimeout(() => setPlayOnce(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <Card
       variant="outlined"
-    
-
-//     sx={{
-//   // card styles
-//   position: 'relative',
-//   minWidth: 'fit-content',
-//   maxWidth: 180,
-//   minHeight: s.cardMinHeight,
-//   borderRadius: 'md',
-//   boxShadow: 'lg',
-//   overflow: 'visible',
-//   p: 1.5,
-//   pt: 2,
-//   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-//   '&:hover': {
-//     transform: 'scale(1.03)',
-//     boxShadow: 'xl',
-//   },
-//   '&:hover .nudge-icon': {
-//     animation: 'bounce 0.6s ease infinite',
-//   },
-//   '&:hover .face-layer-a': {
-//     animation: 'faceFadeA 1.6s ease-in-out infinite',
-//   },
-//   '&:hover .face-layer-b': {
-//     animation: 'faceFadeB 1.6s ease-in-out infinite',
-//   },
-//   ...(playOnce && {
-//     '& .face-layer-a': {
-//       animation: 'faceFadeA 1.6s ease-in-out 1',
-//     },
-//     '& .face-layer-b': {
-//       animation: 'faceFadeB 1.6s ease-in-out 1',
-//     },
-//   }),
-//   '@keyframes bounce': {
-//     '0%, 100%': { transform: 'translateY(0)' },
-//     '50%': { transform: 'translateY(-6px)' },
-//   },
-//   '@keyframes faceFadeA': {
-//     '0%': { opacity: 1 },
-//     '50%': { opacity: 0 },
-//     '100%': { opacity: 1 },
-//   },
-//   '@keyframes faceFadeB': {
-//     '0%': { opacity: 0 },
-//     '50%': { opacity: 1 },
-//     '100%': { opacity: 0 },
-//   },
-// }}
-
-
-
-
-
-// sx={{
-//   position: 'relative',
-//   minWidth: 'fit-content',
-//   maxWidth: 180,
-//   minHeight: s.cardMinHeight,
-//   borderRadius: 'md',
-//   boxShadow: 'lg',
-//   overflow: 'visible',
-//   p: 1.5,
-//   pt: 2,
-//   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-//   '&:hover': {
-//     transform: 'scale(1.03)',
-//     boxShadow: 'xl',
-//   },
-//   '&:hover .nudge-icon': {
-//     animation: 'pulse 1.2s ease-in-out infinite',
-//   },
-//   '&:hover .face-layer-a': {
-//     animation: 'faceFadeA 1.6s ease-in-out infinite',
-//   },
-//   '&:hover .face-layer-b': {
-//     animation: 'faceFadeB 1.6s ease-in-out infinite',
-//   },
-//   ...(playOnce && {
-//     '& .face-layer-a': {
-//       animation: 'faceFadeA 1.6s ease-in-out 1',
-//     },
-//     '& .face-layer-b': {
-//       animation: 'faceFadeB 1.6s ease-in-out 1',
-//     },
-//   }),
-//   '@keyframes pulse': {
-//     '0%, 100%': { transform: 'scale(1)' },
-//     '50%': { transform: 'scale(1.15)' },
-//   },
-//   '@keyframes faceFadeA': {
-//     '0%': { opacity: 1 },
-//     '50%': { opacity: 0 },
-//     '100%': { opacity: 1 },
-//   },
-//   '@keyframes faceFadeB': {
-//     '0%': { opacity: 0 },
-//     '50%': { opacity: 1 },
-//     '100%': { opacity: 0 },
-//   },
-// }}
-
-
-
-
-
-
-// sx={{
-//   position: 'relative',
-//   minWidth: 'fit-content',
-//   maxWidth: 180,
-//   minHeight: s.cardMinHeight,
-//   borderRadius: 'md',
-//   boxShadow: 'lg',
-//   overflow: 'visible',
-//   p: 1.5,
-//   pt: 2,
-//   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-//   '&:hover': {
-//     transform: 'scale(1.03)',
-//     boxShadow: 'xl',
-//   },
-//   '&:hover .nudge-icon': {
-//     animation: 'spin 1.2s linear infinite',
-//   },
-//   '&:hover .face-layer-a': {
-//     animation: 'faceFadeA 1.6s ease-in-out infinite',
-//   },
-//   '&:hover .face-layer-b': {
-//     animation: 'faceFadeB 1.6s ease-in-out infinite',
-//   },
-//   ...(playOnce && {
-//     '& .face-layer-a': {
-//       animation: 'faceFadeA 1.6s ease-in-out 1',
-//     },
-//     '& .face-layer-b': {
-//       animation: 'faceFadeB 1.6s ease-in-out 1',
-//     },
-//   }),
-//   '@keyframes spin': {
-//     '0%': { transform: 'rotate(0deg)' },
-//     '100%': { transform: 'rotate(360deg)' },
-//   },
-//   '@keyframes faceFadeA': {
-//     '0%': { opacity: 1 },
-//     '50%': { opacity: 0 },
-//     '100%': { opacity: 1 },
-//   },
-//   '@keyframes faceFadeB': {
-//     '0%': { opacity: 0 },
-//     '50%': { opacity: 1 },
-//     '100%': { opacity: 0 },
-//   },
-// }}
-
-
-
-
-sx={{
-  position: 'relative',
-  minWidth: 'fit-content',
-  maxWidth: 180,
-  minHeight: s.cardMinHeight,
-  borderRadius: 'md',
-  boxShadow: 'lg',
-  overflow: 'visible',
-  p: 1.5,
-  pt: 2,
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-  '&:hover': {
-    transform: 'scale(1.03)',
-    boxShadow: 'xl',
-  },
-  '&:hover .nudge-icon': {
-    animation: 'shake 0.5s ease-in-out infinite',
-  },
-  '&:hover .face-layer-a': {
-    animation: 'faceFadeA 1.6s ease-in-out infinite',
-  },
-  '&:hover .face-layer-b': {
-    animation: 'faceFadeB 1.6s ease-in-out infinite',
-  },
-  ...(playOnce && {
-    '& .face-layer-a': {
-      animation: 'faceFadeA 1.6s ease-in-out 1',
-    },
-    '& .face-layer-b': {
-      animation: 'faceFadeB 1.6s ease-in-out 1',
-    },
-  }),
-  '@keyframes shake': {
-    '0%, 100%': { transform: 'translateX(0)' },
-    '25%': { transform: 'translateX(-4px)' },
-    '50%': { transform: 'translateX(4px)' },
-    '75%': { transform: 'translateX(-4px)' },
-  },
-  '@keyframes faceFadeA': {
-    '0%': { opacity: 1 },
-    '50%': { opacity: 0 },
-    '100%': { opacity: 1 },
-  },
-  '@keyframes faceFadeB': {
-    '0%': { opacity: 0 },
-    '50%': { opacity: 1 },
-    '100%': { opacity: 0 },
-  },
-}}
-
-
-
-
-
+      sx={{
+        position: 'relative',
+        minWidth: 'fit-content',
+        maxWidth: 180,
+        minHeight: s.cardMinHeight,
+        borderRadius: 'md',
+        boxShadow: 'lg',
+        overflow: 'visible',
+        p: 1.5,
+        pt: 2,
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        '&:hover': {
+          transform: 'scale(1.03)',
+          boxShadow: 'xl',
+        },
+        ...(colour === 'red' && {
+          '&:hover .nudge-icon': {
+            animation: 'spin 1.2s linear infinite',
+          },
+          '@keyframes spin': {
+            '0%': { transform: 'rotate(0deg)' },
+            '100%': { transform: 'rotate(360deg)' },
+          },
+        }),
+        ...(colour === 'amber' && {
+          '&:hover .nudge-icon': {
+            animation: 'pulse 1.2s ease-in-out infinite',
+          },
+          '@keyframes pulse': {
+            '0%, 100%': { transform: 'scale(1)' },
+            '50%': { transform: 'scale(1.15)' },
+          },
+        }),
+        ...(colour === 'green' && {
+          '&:hover .nudge-icon': {
+            animation: 'bounce 0.6s ease infinite',
+          },
+          '@keyframes bounce': {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-6px)' },
+          },
+        }),
+        '&:hover .face-layer-a': {
+          animation: 'faceFadeA 1.6s ease-in-out infinite',
+        },
+        '&:hover .face-layer-b': {
+          animation: 'faceFadeB 1.6s ease-in-out infinite',
+        },
+        ...(playOnce && {
+          '& .face-layer-a': {
+            animation: 'faceFadeA 1.6s ease-in-out 1',
+          },
+          '& .face-layer-b': {
+            animation: 'faceFadeB 1.6s ease-in-out 1',
+          },
+        }),
+        '@keyframes faceFadeA': {
+          '0%': { opacity: 1 },
+          '50%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+        '@keyframes faceFadeB': {
+          '0%': { opacity: 0 },
+          '50%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
+      }}
     >
-
-
-        
       <Box
         className="nudge-icon"
         sx={{

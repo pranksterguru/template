@@ -5,6 +5,7 @@ import InfoCard from '../components/InfoCard';
 import StatsCard from '../components/Statscard';
 import MetricBar from '../components/MetricBar';
 import Button from '@mui/joy/Button';
+import StatusSmiley from '../components/StatusSmiley';
 
 const Users = () => {
   const metricsRef = useRef();
@@ -37,6 +38,7 @@ const Users = () => {
 
 
       <MetricBar red={20} amber={30} green={50} />
+<StatusSmiley status="red" />
 
         <InfoCard
           icon="info"
