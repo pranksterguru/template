@@ -84,30 +84,30 @@ const InfoCard = (props) => {
         </Box>
       )}
 
-     
 
-<Box
-  sx={{
-    px: 2,
-    py: 2,
-    boxSizing: 'border-box',
-    width: '100%',
-  }}
->
-  <Box
-    sx={{
-      display: 'flex',
-      justifyContent: contentJustifyMap[contentAlign] || 'center',
-      width: '100%',
-    }}
-  >
-    {props.children ?? (
-      <Typography level="body-sm" sx={{ color: 'text.secondary' }}>
-        {description}
-      </Typography>
-    )}
-  </Box>
-</Box>
+
+      <Box
+        sx={{
+          px: 2,
+          py: 2,
+          boxSizing: 'border-box',
+          width: '100%',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: contentJustifyMap[contentAlign] || 'center',
+            width: '100%',
+          }}
+        >
+          {props.children ?? (
+            <Typography level="body-sm" sx={{ color: 'text.secondary' }}>
+              {description}
+            </Typography>
+          )}
+        </Box>
+      </Box>
 
 
 

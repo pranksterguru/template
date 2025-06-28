@@ -12,8 +12,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Grid from '@mui/joy/Grid';
 import Table from '@mui/joy/Table';
 
-import StatsCard from '../components/CustomControls';
-import InfoCard from '../components/InfoCard'; // Make sure the path is correct
+import StatsCard from '../components/Statscard';
+import InfoCard from '../components/InfoCard'; 
 import llmJudgeData from '../llmJudgeData';
 
 function renderCards(cardsObj) {

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import InfoCard from '../components/InfoCard';
-import StatsCard from '../components/CustomControls';
+import StatsCard from '../components/Statscard';
 import MetricBar from '../components/MetricBar';
 import Button from '@mui/joy/Button';
 

@@ -40,7 +40,7 @@
             "details": [
                 {
                     "overall rating": "Red",
-                    "test name": "test1",
+                    "test_name": "test1",
                     "elements": [
                         {
                             "type": "cards",
@@ -97,7 +97,7 @@
                 },
                 {
                     "overall rating": "Green",
-                    "test name": "test2",
+                    "test_name": "test2",
                     "elements": [
                         {
                             "type": "cards",
@@ -154,7 +154,7 @@
                 },
                 {
                     "overall rating": "Amber",
-                    "test name": "test3",
+                    "test_name": "test3",
                     "elements": [
                         {
                             "type": "cards",
