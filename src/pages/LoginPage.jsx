@@ -37,31 +37,33 @@ const LoginPage = () => {
     setForm({ ...form, [field]: e.target.value });
   };
 
-  const handleLogin = async () => {
-    try {
-      // const res = await fetch(properties.api_login, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(form),
-      // });
-
-      // const result = await res.json();
-      //if (result.status === 'success') {
-      if (1==1) {
-        sessionStorage.setItem('username',form.username)
-        sessionStorage.setItem('password',form.password)
-        sessionStorage.setItem('account',form.account)
-        sessionStorage.setItem('role',form.role)
-
-        navigate('/dashboard');
-
-      } else {
-        setError('Login failed. Please check your credentials.');
+const handleLogin = async () => {
+  try {
+    const res = await fetch(properties.api_login, {
+      method: 'POST',
+      headers: {
+        'username': form.username,
+        'password': form.password,
+        'account': form.account,
+        'role': form.role
       }
-    } catch (err) {
-      setError('Unable to connect to login service.');
+    });
+
+    const result = await res.json();
+    if (result.status === 'success') {
+      sessionStorage.setItem('username', form.username);
+      sessionStorage.setItem('password', form.password);
+      sessionStorage.setItem('account', form.account);
+      sessionStorage.setItem('role', form.role);
+
+      navigate('/dashboard');
+    } else {
+      setError('Login failed. Please check your credentials.');
     }
-  };
+  } catch (err) {
+    setError('Unable to connect to login service.');
+  }
+};
 
   return (
     <Box>
