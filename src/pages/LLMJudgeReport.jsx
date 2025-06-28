@@ -8,11 +8,15 @@ import inputData from './input.json';
 import LLMJudgeReportAccordion from '../components/LLMJudgeReportAccordion';
 import Card from '@mui/joy/Card';
 import LLMReportControls from '../components/LLMJudgeReportControl';
+import { useLocation } from 'react-router-dom';
+
 
 const LLMJudgeReport = () => {
   const [expandedKeys, setExpandedKeys] = useState({});
   const [filterColor, setFilterColor] = useState(null);
   const [filterMetricColor, setFilterMetricColor] = useState(null);
+  const inputData = location.state?.inputData || inputJson || null;
+
 
   const handleMetricClick = (metricName, color) => {
     console.log(`MetricBar segment clicked: ${metricName} - ${color}`);
