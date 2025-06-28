@@ -7,6 +7,8 @@ import Button from '@mui/joy/Button';
 import InfoCard from '../components/InfoCard';
 import MetricsDropdown from '../components/MetricsDropdown';
 import properties from '../properties';
+import { useNavigate } from 'react-router-dom';
+
 
 const metricData = properties.metricData;
 
@@ -19,6 +21,7 @@ const LLMJudgeConfig = () => {
   const [miscPrompt, setMiscPrompt] = useState('');
   const [excelFile, setExcelFile] = useState(null);
   const metricsRef = useRef();
+  const navigate = useNavigate();
 
 const handleEvaluate = async () => {
   const selectedMetrics = metricsRef.current?.getValue() || [];
@@ -60,8 +63,10 @@ const handleEvaluate = async () => {
     }
 
     const result = await response.json();
+    navigate('/LLMJudgeReport', { state: { inputData: result } });
+
+    
     console.log('Evaluation Result:', result);
-    alert('Evaluation completed successfully!');
   } catch (error) {
     console.error('Error during evaluation:', error);
     alert(`Error: ${error.message}`);
