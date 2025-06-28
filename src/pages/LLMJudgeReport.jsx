@@ -131,7 +131,7 @@ const LLMJudgeReport = () => {
   };
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 0.5 }}>
       <Typography level="h4" sx={{ mb: 2 }}>
         LLM as Judge Report
       </Typography>

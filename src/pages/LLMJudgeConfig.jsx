@@ -6,30 +6,16 @@ import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/joy/Button';
 import InfoCard from '../components/InfoCard';
 import MetricsDropdown from '../components/MetricsDropdown';
+import properties from '../properties';
 
-const metricData = [
-  {
-    name: 'metric1',
-    description: 'description of the metric',
-    thresholds: { green: 100, amber: 70, red: 30 }
-  },
-  {
-    name: 'metric2',
-    description: 'description of the metric',
-    thresholds: { green: 100, amber: 70, red: 30 }
-  },
-  {
-    name: 'metric3',
-    description: 'description of the metric',
-    thresholds: { green: 100, amber: 70, red: 30 }
-  }
-];
+const metricData = properties.metricData;
+
 
 const LLMJudgeConfig = () => {
   const [llmModel, setLlmModel] = useState('');
   const [awsRegion, setAwsRegion] = useState('');
-  const [concurrency, setConcurrency] = useState('');
-  const [requestsPerMinute, setRequestsPerMinute] = useState('');
+  const [concurrency, setConcurrency] = useState(3);
+  const [requestsPerMinute, setRequestsPerMinute] =  useState(3);
   const [evaluationText, setEvaluationText] = useState('');
   const [miscPrompt, setMiscPrompt] = useState('');
   const [excelFile, setExcelFile] = useState(null);

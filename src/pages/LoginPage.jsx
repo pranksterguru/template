@@ -78,7 +78,7 @@ const handleLogin = async () => {
         }}
       >
         <Typography level="h4" sx={{ mb: 2, textAlign: 'center', color: 'primary.900' }}>
-          AI-Brain Login
+          AI-Mind Login
         </Typography>
         <Stack spacing={2}>
           <Input placeholder="AWS User Name" name="username" value={form.username} onChange={handleChange('username')} />

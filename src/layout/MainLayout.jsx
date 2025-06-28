@@ -42,7 +42,7 @@ const MainLayout = () => {
             fontFamily: '"Segoe UI", Roboto, sans-serif'
           }}
         >
-          AI-Brain
+          AI-Mind
         </Typography>
       </Sheet>
       <Sidebar open={open} />

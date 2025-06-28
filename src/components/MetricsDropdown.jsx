@@ -13,6 +13,7 @@ import Input from '@mui/joy/Input';
 import Tooltip from '@mui/joy/Tooltip';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ExpandLess from '@mui/icons-material/ExpandLess';
+import CustomTooltip from './CustomTooltip';
 
 const MetricsDropdown = forwardRef(({ metricData = [] }, ref) => {
   const [open, setOpen] = useState(false);
@@ -116,13 +117,14 @@ useEffect(() => {
             const selectedMetric = selected.find((m) => m.name === metric.name);
             return (
               <Box key={metric.name} sx={{ mb: 2 }}>
-                <Tooltip title={metric.description}>
-                  <Checkbox
-                    checked={!!selectedMetric}
-                    onChange={() => toggleMetric(metric)}
-                    label={metric.name}
-                  />
-                </Tooltip>
+                <CustomTooltip header={metric.name} content={metric.description}>
+  <Checkbox
+    checked={!!selectedMetric}
+    onChange={() => toggleMetric(metric)}
+    label={metric.name}
+  />
+</CustomTooltip>
+
                 {selectedMetric && (
                   <Box sx={{ mt: 1, pl: 3, display: 'flex', gap: 1 }}>
                     <Input
