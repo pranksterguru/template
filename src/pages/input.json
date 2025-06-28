@@ -94,6 +94,120 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "overall rating": "Green",
+                    "test name": "test2",
+                    "elements": [
+                        {
+                            "type": "cards",
+                            "columns": 3,
+                            "cards": [
+                                {
+                                    "name": "FACTUAL ACCURACY",
+                                    "score": "3",
+                                    "colour": "Green"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "AI Generated",
+                                    "content": "Text"
+                                },
+                                {
+                                    "title": "Input to AI",
+                                    "content": "This will later be injected.. this has a lot of special characters now"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "EVALUATIONS",
+                                    "content": "Text"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "REASONS",
+                                    "content": "Text"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "IMPROVEMENTS",
+                                    "content": "Text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "overall rating": "Amber",
+                    "test name": "test3",
+                    "elements": [
+                        {
+                            "type": "cards",
+                            "columns": 3,
+                            "cards": [
+                                {
+                                    "name": "FACTUAL ACCURACY",
+                                    "score": "3",
+                                    "colour": "Green"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "AI Generated",
+                                    "content": "Text"
+                                },
+                                {
+                                    "title": "Input to AI",
+                                    "content": "This will later be injected.. this has a lot of special characters now"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "EVALUATIONS",
+                                    "content": "Text"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "REASONS",
+                                    "content": "Text"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textarea",
+                            "data": [
+                                {
+                                    "title": "IMPROVEMENTS",
+                                    "content": "Text"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

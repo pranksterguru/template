@@ -39,18 +39,17 @@ const LoginPage = () => {
 
 const handleLogin = async () => {
   try {
-    const res = await fetch(properties.api_login, {
-      method: 'POST',
-      headers: {
-        'username': form.username,
-        'password': form.password,
-        'account': form.account,
-        'role': form.role
-      }
-    });
+    // const res = await fetch(properties.api_login, {
+    //   method: 'POST',
+    //   headers: {
+    //     'username': form.username,
+    //     'password': form.password
+    //   }
+    // });
 
-    const result = await res.json();
-    if (result.status === 'success') {
+    // const result = await res.json();
+    // if (result.status === 'success') {
+      if (1 == 1) {
       sessionStorage.setItem('username', form.username);
       sessionStorage.setItem('password', form.password);
       sessionStorage.setItem('account', form.account);

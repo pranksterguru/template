@@ -14,7 +14,7 @@ import Tooltip from '@mui/joy/Tooltip';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 
-const Metrics = forwardRef(({ metricData = [] }, ref) => {
+const MetricsDropdown = forwardRef(({ metricData = [] }, ref) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 const [selected, setSelected] = useState([]);
@@ -159,6 +159,7 @@ useEffect(() => {
                       size="sm"
                       type="number"
                       placeholder="Green"
+                      disabled
                       value={selectedMetric.thresholds.green}
                       onChange={(e) =>
                         handleThresholdChange(metric.name, 'green', e.target.value)
@@ -181,4 +182,4 @@ useEffect(() => {
   );
 });
 
-export default Metrics;
+export default MetricsDropdown;
