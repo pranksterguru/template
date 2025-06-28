@@ -64,33 +64,34 @@ const MetricBar = ({
           boxShadow: 'sm'
         }}
       >
-        <Tooltip title={`Red: ${red}`}>
-          <Box
-            sx={{
-              width: animatedWidths.red,
-              bgcolor: '#c62828',
-              transition: 'width 2s ease'
-            }}
-          />
-        </Tooltip>
-        <Tooltip title={`Amber: ${amber}`}>
-          <Box
-            sx={{
-              width: animatedWidths.amber,
-              bgcolor: '#ff8f00',
-              transition: 'width 2s ease 0.3s'
-            }}
-          />
-        </Tooltip>
-        <Tooltip title={`Green: ${green}`}>
-          <Box
-            sx={{
-              width: animatedWidths.green,
-              bgcolor: '#2e7d32',
-              transition: 'width 2s ease 0.6s'
-            }}
-          />
-        </Tooltip>
+<Tooltip title={`Red: ${red}`}>
+  <Box
+    sx={{
+      width: animatedWidths.red,
+      bgcolor: 'rgba(198, 40, 40, 0.7)', // #c62828 with 70% opacity
+      transition: 'width 5s ease 0.3s',
+    }}
+  />
+</Tooltip>
+<Tooltip title={`Amber: ${amber}`}>
+  <Box
+    sx={{
+      width: animatedWidths.amber,
+      bgcolor: 'rgba(255, 143, 0, 0.7)', // #ff8f00 with 70% opacity
+      transition: 'width 8s ease 0.6s',
+    }}
+  />
+</Tooltip>
+<Tooltip title={`Green: ${green}`}>
+  <Box
+    sx={{
+      width: animatedWidths.green,
+      bgcolor: 'rgba(46, 125, 50, 0.7)', // #2e7d32 with 70% opacity
+      transition: 'width 4s ease 0.9s',
+    }}
+  />
+</Tooltip>
+
       </Box>
     </Card>
   );

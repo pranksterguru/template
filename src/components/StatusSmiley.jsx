@@ -19,17 +19,10 @@ const StatusSmiley = ({ status = 'green', size = 48 }) => {
   const InitialIcon = MuiIcons[initialIconKey];
   const FinalIcon = MuiIcons[finalIconKey];
 
-  const [playOnce, setPlayOnce] = useState(true);
   const gradient = colorMap[status] || colorMap.green;
-
-  useEffect(() => {
-    const timer = setTimeout(() => setPlayOnce(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <Box
-      className="nudge-icon"
       sx={{
         position: 'relative',
         width: size,
@@ -41,32 +34,22 @@ const StatusSmiley = ({ status = 'green', size = 48 }) => {
         justifyContent: 'center',
         boxShadow: 'sm',
         overflow: 'hidden',
-        ...(status === 'red' && {
-          animation: 'spin 1.2s linear infinite',
-          '@keyframes spin': {
-            '0%': { transform: 'rotate(0deg)' },
-            '100%': { transform: 'rotate(360deg)' },
-          },
-        }),
-        ...(status === 'amber' && {
-          animation: 'pulse 1.2s ease-in-out infinite',
-          '@keyframes pulse': {
-            '0%, 100%': { transform: 'scale(1)' },
-            '50%': { transform: 'scale(1.15)' },
-          },
-        }),
-        ...(status === 'green' && {
-          animation: 'bounce 0.6s ease infinite',
-          '@keyframes bounce': {
-            '0%, 100%': { transform: 'translateY(0)' },
-            '50%': { transform: 'translateY(-6px)' },
-          },
-        }),
-        '& .face-layer-a': {
-          animation: playOnce ? 'faceFadeA 1.6s ease-in-out 1' : 'faceFadeA 1.6s ease-in-out infinite',
+        '&:hover': {
+          ...(status === 'red' && { animation: 'spin 1.2s linear infinite' }),
+          ...(status === 'amber' && { animation: 'pulse 1.2s ease-in-out infinite' }),
+          ...(status === 'green' && { animation: 'bounce 0.6s ease infinite' }),
         },
-        '& .face-layer-b': {
-          animation: playOnce ? 'faceFadeB 1.6s ease-in-out 1' : 'faceFadeB 1.6s ease-in-out infinite',
+        '@keyframes spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        '@keyframes pulse': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.15)' },
+        },
+        '@keyframes bounce': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
         '@keyframes faceFadeA': {
           '0%': { opacity: 1 },
@@ -85,6 +68,7 @@ const StatusSmiley = ({ status = 'green', size = 48 }) => {
         sx={{
           position: 'absolute',
           opacity: 1,
+          animation: 'faceFadeA 1.6s ease-in-out infinite',
         }}
       >
         <InitialIcon sx={{ color: '#fff', fontSize: size * 0.6 }} />
@@ -94,6 +78,7 @@ const StatusSmiley = ({ status = 'green', size = 48 }) => {
         sx={{
           position: 'absolute',
           opacity: 0,
+          animation: 'faceFadeB 1.6s ease-in-out infinite',
         }}
       >
         <FinalIcon sx={{ color: '#fff', fontSize: size * 0.6 }} />

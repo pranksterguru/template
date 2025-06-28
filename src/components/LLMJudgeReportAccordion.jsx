@@ -6,8 +6,11 @@ import AccordionSummary from '@mui/joy/AccordionSummary';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import Card from '@mui/joy/Card';
 import StatsCard from './Statscard';
+import StatusSmiley from './StatusSmiley'; // make sure path is correct
 
 const LLMJudgeReportAccordion = ({ detail, index, detailIndex }) => {
+  const status = (detail.overall_rating || 'green').toLowerCase(); // default to green
+
   return (
     <Accordion
       key={`accordion-${index}-${detailIndex}`}
@@ -27,22 +30,34 @@ const LLMJudgeReportAccordion = ({ detail, index, detailIndex }) => {
           px: 2,
           py: 1.5,
           borderTop: '1px groove',
+backgroundColor: 'neutral.solidBg',
+
           '&.MuiAccordionSummary-root:hover': {
             backgroundColor: 'transparent !important',
           },
           '& .MuiAccordionSummary-button': {
             backgroundColor: 'transparent !important',
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '100%',
+            alignItems: 'center',
           },
           '& .MuiAccordionSummary-button:hover': {
             backgroundColor: 'transparent !important',
           },
         }}
       >
-        <Typography level="title-md" fontWeight="md">
-          {detail['test_name']}
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+          <Typography level="title-md" fontWeight="md">
+            {detail['test_name']}
+          </Typography>
+        </Box>
+        <Box sx={{ ml: 2 }}>
+          <StatusSmiley status={status} size={32} />
+        </Box>
       </AccordionSummary>
-      <AccordionDetails sx={{ px: 2, pb: 1 }} >
+
+      <AccordionDetails sx={{ px: 2, pb: 1 }}>
         {detail.elements?.map((el, elIdx) => {
           if (el.type === 'cards') {
             return (
@@ -54,7 +69,7 @@ const LLMJudgeReportAccordion = ({ detail, index, detailIndex }) => {
                   gap: 2,
                   my: 3.5,
                   overflow: 'visible',
-                px: .5
+                  px: 0.5,
                 }}
               >
                 {el.cards.map((card, cardIdx) => (
