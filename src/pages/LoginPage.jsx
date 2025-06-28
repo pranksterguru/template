@@ -8,6 +8,7 @@ import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import properties from '../properties';
 
+
 const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,13 +17,8 @@ const LoginPage = () => {
     const params = new URLSearchParams(location.search);
     return params.get('demo') === 'true';
   }, [location.search]);
+const { demoValues } = properties;
 
-  const demoValues = {
-    username: 'demo-user',
-    password: '********',
-    account: '123456789012',
-    role: 'DemoRole',
-  };
 
   const [form, setForm] = useState({
     username: isDemo ? demoValues.username : '',
