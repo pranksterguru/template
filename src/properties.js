@@ -1,6 +1,12 @@
 const properties = {
   api_login: 'http:somelogin',
   api_evaluate: 'http:somelogin',
+    demoValues: {
+    username: 'demo-user',
+    password: '********',
+    account: '123456789012',
+    role: 'DemoRole',
+  },
   metricData: [
     {
       name: 'Factual Accuracy',
