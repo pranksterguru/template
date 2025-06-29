@@ -4,7 +4,7 @@ import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import MetricBar from '../components/MetricBar';
 import InfoCard from '../components/InfoCard';
-import inputData from './input.json';
+import inputjsonData from './input.json';
 import LLMJudgeReportAccordion from '../components/LLMJudgeReportAccordion';
 import Card from '@mui/joy/Card';
 import LLMReportControls from '../components/LLMJudgeReportControl';
@@ -16,7 +16,7 @@ const LLMJudgeReport = () => {
   const [filterColor, setFilterColor] = useState(null);
   const [filterMetricColor, setFilterMetricColor] = useState(null);
   const location = useLocation();
-  const inputData = location?.state?.inputData ?? inputJson ?? null;
+  const inputData = location?.state?.inputData || inputjsonData || {result:[]};
 
 
   const handleMetricClick = (metricName, color) => {
@@ -27,7 +27,7 @@ const LLMJudgeReport = () => {
 
   const metricBars = [];
 
-  inputData.result.forEach((entry, index) => {
+  inputData?.result.forEach((entry, index) => {
     if (entry.overall?.metrics) {
       Object.entries(entry.overall.metrics).forEach(([metricName, values]) => {
         const readable = metricName.replace(/_/g, ' ');
@@ -47,7 +47,7 @@ const LLMJudgeReport = () => {
 
   const detailAccordions = [];
 
-  inputData.result.forEach((entry, index) => {
+  inputData?.result.forEach((entry, index) => {
     if (Array.isArray(entry.details)) {
       entry.details.forEach((detail, i) => {
         const status = (detail.overall_rating || '').toLowerCase();
