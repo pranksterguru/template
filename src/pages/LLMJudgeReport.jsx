@@ -4,7 +4,6 @@ import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import MetricBar from '../components/MetricBar';
 import InfoCard from '../components/InfoCard';
-import inputjsonData from './input.json';
 import LLMJudgeReportAccordion from '../components/LLMJudgeReportAccordion';
 import Card from '@mui/joy/Card';
 import LLMReportControls from '../components/LLMJudgeReportControl';
@@ -16,7 +15,7 @@ const LLMJudgeReport = () => {
   const [filterColor, setFilterColor] = useState(null);
   const [filterMetricColor, setFilterMetricColor] = useState(null);
   const location = useLocation();
-  const inputData = location?.state?.inputData || inputjsonData || {result:[]};
+  const inputData = location?.state?.inputData || {result:[]};
 
 
   const handleMetricClick = (metricName, color) => {

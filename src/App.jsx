@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import LLMJudge from './pages/LLMJudge';
 import LLMJudgeConfig from './pages/LLMJudgeConfig';
 import LLMJudgeReport from './pages/LLMJudgeReport';
+import LLMJudgePlayground from './pages/LLMJudgePlayground';
 
 const App = () => {
   return (
@@ -24,6 +25,8 @@ const App = () => {
         <Route path="/llmjudge" element={<LLMJudge />} />
         <Route path="/llmjudgeconfig" element={<LLMJudgeConfig />} />
         <Route path="/llmjudgereport" element={<LLMJudgeReport />} />
+        <Route path="/llmjudgeplayground" element={<LLMJudgePlayground />} />
+
       </Route>
     </Routes>
   );

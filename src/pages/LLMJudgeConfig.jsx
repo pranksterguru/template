@@ -9,6 +9,8 @@ import MetricsDropdown from '../components/MetricsDropdown';
 import properties from '../properties';
 import { useNavigate } from 'react-router-dom';
 import CustomLoader from '../components/CustomLoader';
+import inputjsonData from './input.json';
+
 
 const metricData = properties.metricData;
 
@@ -70,6 +72,8 @@ const LLMJudgeConfig = () => {
     } catch (error) {
       console.error('Error during evaluation:', error);
       alert(`Error: ${error.message}`);
+      navigate('/LLMJudgeReport', { state: { inputData: inputjsonData } });
+
     } finally {
       setLoading(false);
     }
