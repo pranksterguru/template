@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import CustomLoader from '../components/CustomLoader';
 import Button from '@mui/joy/Button';
+import CustomSnack from '../components/CustomSnack';
 
 const Users = () => {
-  const [loading, setLoading] = useState(false);
-
-  const handleClick = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000); // show loader for 3 seconds
-  };
+  const [showSnack, setShowSnack] = useState(false);
 
   return (
     <>
-      {loading && <CustomLoader />}
-      <Button onClick={handleClick}>Show Loader</Button>
+      <Button onClick={() => setShowSnack(true)}>Show Notification</Button>
+
+      <CustomSnack
+        open={showSnack}
+        onClose={() => setShowSnack(false)}
+        title="Hello"
+        message="This is a sticky message until user closes it."
+        type="error"
+        hideTime={5000}
+        sticky={true}
+      />
     </>
   );
 };
