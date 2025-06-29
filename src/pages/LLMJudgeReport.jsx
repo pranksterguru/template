@@ -143,7 +143,7 @@ const LLMJudgeReport = () => {
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateColumns: 'repeat(6, 1fr)',
           gap: 8,
           mb: 3,
         }}
