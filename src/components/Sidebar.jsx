@@ -29,6 +29,9 @@ const items = [
     path: '/llmjudge',
     children: [
       { text: 'Config', path: '/llmjudgeconfig' },
+      { text: 'from db', path: '/llmjudgedb' },
+
+      
       { text: 'Report', path: '/llmjudgereport' },
       { text: 'Playground', path: '/llmjudgeplayground' }
 

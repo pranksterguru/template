@@ -9,6 +9,7 @@ import LLMJudge from './pages/LLMJudge';
 import LLMJudgeConfig from './pages/LLMJudgeConfig';
 import LLMJudgeReport from './pages/LLMJudgeReport';
 import LLMJudgePlayground from './pages/LLMJudgePlayground';
+import LLMJudgeDB from './pages/LLMJudgeDB';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/llmjudgeconfig" element={<LLMJudgeConfig />} />
         <Route path="/llmjudgereport" element={<LLMJudgeReport />} />
         <Route path="/llmjudgeplayground" element={<LLMJudgePlayground />} />
+        <Route path="/llmjudgedb" element={<LLMJudgeDB />} />
 
       </Route>
     </Routes>

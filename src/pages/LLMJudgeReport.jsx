@@ -29,7 +29,7 @@ const LLMJudgeReport = () => {
   inputData?.result.forEach((entry, index) => {
     if (entry.overall?.metrics) {
       Object.entries(entry.overall.metrics).forEach(([metricName, values]) => {
-        const readable = metricName.replace(/_/g, ' ');
+        const readable = metricName;
         metricBars.push(
           <MetricBar
             key={`${index}-${metricName}`}
