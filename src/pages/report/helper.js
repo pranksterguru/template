@@ -1,0 +1,92 @@
+function renderOverallMetrics(metrics) {
+    if (!metrics) return '';
+    let html = '<div class="mb-4"><h5>Overall Metrics</h5><div class="row">';
+    for (let metric in metrics) {
+        html += `<div class="col-md-4 col-6 mb-2"><strong>${metric}</strong>: `;
+        let vals = metrics[metric];
+        for (let k of ['Red', 'Green', 'Amber']) {
+            if (vals[k] !== undefined)
+                html += `<span class="card-metric ${k}">${k}: ${vals[k]}</span>`;
+        }
+        html += '</div>';
+    }
+    html += '</div></div>';
+    return html;
+}
+
+function renderCardsElement(element) {
+    const { columns, cards } = element;
+    let html = '<div class="cards-container">';
+    for (let i = 0; i < cards.length; i += columns) {
+        html += `<div class="cards-row">`;
+        for (let j = i; j < Math.min(i + columns, cards.length); j++) {
+            let c = cards[j];
+            html += `<div class="card-metric ${c.colour}">${c.name}<br>Score: ${c.score}</div>`;
+        }
+        html += `</div>`;
+    }
+    html += '</div>';
+    return html;
+}
+
+function renderTextareaElement(element) {
+    let html = '';
+    for (let d of element.data) {
+        html += `<div class="textarea-block"><div class="textarea-title">${d.title}</div>${d.content}</div>`;
+    }
+    return html;
+}
+
+function renderDetailsAccordion(details) {
+    let html = '<div id="detailsAccordionRoot">';
+    details.forEach((detail, i) => {
+        let summary = `<span class="accordion-title">${detail.test_name}</span> 
+            <span class="badge bg-${detail.overall_rating === "Red" ? "danger" : (detail.overall_rating === "Green" ? "success" : "warning text-dark")} ms-2">${detail.overall_rating}</span>`;
+        html += `<h3>${summary}</h3><div>`;
+
+        detail.elements.forEach(el => {
+            if (el.type === "cards") {
+                html += renderCardsElement(el);
+            } else if (el.type === "textarea") {
+                html += renderTextareaElement(el);
+            }
+        });
+
+        html += `</div>`;
+    });
+    html += '</div>';
+    return html;
+}
+
+function displayJsonData(json) {
+    // Clear previous
+    $('#overallMetrics').empty();
+    $('#detailsAccordion').empty();
+    let overall = json.result[0]?.overall?.metrics;
+    let details = json.result[1]?.details || [];
+    $('#overallMetrics').html(renderOverallMetrics(overall));
+    $('#detailsAccordion').html(renderDetailsAccordion(details));
+
+    $("#detailsAccordionRoot").accordion({
+        collapsible: true,
+        active: false,
+        heightStyle: "content"
+    });
+}
+
+$(function () {
+    $('#jsonFile').on('change', function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (evt) {
+            try {
+                const json = JSON.parse(evt.target.result);
+                displayJsonData(json);
+            } catch (err) {
+                alert("Invalid JSON file.");
+            }
+        };
+        reader.readAsText(file);
+    });
+});

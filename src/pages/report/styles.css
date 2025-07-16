@@ -1,0 +1,46 @@
+#detailsAccordion .accordion-title {
+    font-weight: 600;
+    font-size: 1.12rem;
+}
+.card-metric {
+    display: inline-block;
+    margin: 3px 6px 3px 0;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 1rem;
+    min-width: 110px;
+    text-align: center;
+    color: #fff;
+}
+.card-metric.Green { background: #388e3c; }
+.card-metric.Red { background: #d32f2f; }
+.card-metric.Amber { background: #ffa000; color: #000; }
+
+.cards-container {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.cards-row {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.textarea-block {
+    background: #f9f9f9;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 0.99rem;
+}
+.textarea-title {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 2px;
+}
+.ui-accordion .ui-accordion-header {
+    font-size: 1.09rem;
+    font-weight: 600;
+}
