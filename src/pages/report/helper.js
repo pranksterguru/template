@@ -4,24 +4,33 @@ let currentSearch = "";
 
 function renderOverallMetrics(metrics) {
     if (!metrics) return '';
-    let html = '<div class="mb-4"><h5>Overall Metrics</h5><div class="metrics-grid">';
+    let html = '<div class="mb-4"><div class="metrics-title-bar">Overall Metrics</div><div class="metrics-grid">';
     for (let metric in metrics) {
-        html += `<div class="metric-group">`;
-        html += `<div class="metric-group-title">${metric}</div>`;
-        html += `<div class="metric-group-row">`;
-        let vals = metrics[metric];
-        for (let k of ['Red', 'Green', 'Amber']) {
-            if (vals[k] !== undefined)
-                html += `<div class="metric-score-box ${k}">
-                            <div class="metric-score-label">${k}</div>
-                            <div class="metric-score-value">${vals[k]}</div>
-                        </div>`;
-        }
-        html += `</div></div>`;
+        const vals = metrics[metric];
+        const total = (vals.Red || 0) + (vals.Amber || 0) + (vals.Green || 0);
+        const redPct   = total ? ((vals.Red   || 0) / total) * 100 : 0;
+        const amberPct = total ? ((vals.Amber || 0) / total) * 100 : 0;
+        const greenPct = total ? ((vals.Green || 0) / total) * 100 : 0;
+
+        html += `<div class="metric-group">
+            <div class="metric-group-title">${metric.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}</div>
+            <div class="metric-bar">
+                <div class="metric-bar-segment metric-bar-red" style="width:${redPct}%"></div>
+                <div class="metric-bar-segment metric-bar-amber" style="width:${amberPct}%"></div>
+                <div class="metric-bar-segment metric-bar-green" style="width:${greenPct}%"></div>
+            </div>
+            <div class="metric-count-row">
+                <span class="metric-count-r">R:${vals.Red||0}</span>
+                <span class="metric-count-a">A:${vals.Amber||0}</span>
+                <span class="metric-count-g">G:${vals.Green||0}</span>
+            </div>
+        </div>`;
     }
     html += '</div></div>';
     return html;
 }
+
+
 
 function renderCardsElement(element) {
     const { columns, cards } = element;
