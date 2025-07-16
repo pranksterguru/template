@@ -1,4 +1,6 @@
 let allDetails = [];
+let currentFilter = null;
+let currentSearch = "";
 
 function renderOverallMetrics(metrics) {
     if (!metrics) return '';
@@ -74,7 +76,37 @@ function displayJsonData(json) {
 
     $('#overallMetrics').html(renderOverallMetrics(overall));
     $('#filterRow').show();
+    currentFilter = null;
+    currentSearch = "";
+    $('#searchBox').val("");
+    $('.filter-btn').removeClass('active');
     renderAndShowAccordion(allDetails);
+}
+
+function matchesSearch(detail, searchStr) {
+    if (!searchStr) return true;
+    searchStr = searchStr.toLowerCase();
+    for (let el of (detail.elements || [])) {
+        if (el.type === "textarea") {
+            for (let d of el.data) {
+                if ((d.title === "Input to AI" || d.title === "AI Generated") && d.content && d.content.toLowerCase().includes(searchStr)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+function filterAndRenderAccordion(rating, searchStr) {
+    let filtered = allDetails;
+    if (rating) {
+        filtered = filtered.filter(x => (x.overall_rating || '').toLowerCase() === rating.toLowerCase());
+    }
+    if (searchStr) {
+        filtered = filtered.filter(x => matchesSearch(x, searchStr));
+    }
+    renderAndShowAccordion(filtered);
 }
 
 function renderAndShowAccordion(details) {
@@ -84,14 +116,6 @@ function renderAndShowAccordion(details) {
         active: false,
         heightStyle: "content"
     });
-}
-
-function filterAndRenderAccordion(rating) {
-    let filtered = allDetails;
-    if (rating) {
-        filtered = allDetails.filter(x => (x.overall_rating || '').toLowerCase() === rating.toLowerCase());
-    }
-    renderAndShowAccordion(filtered);
 }
 
 $(function () {
@@ -116,11 +140,18 @@ $(function () {
     $(document).on('click', '.filter-btn', function () {
         $('.filter-btn').removeClass('active');
         $(this).addClass('active');
-        let filter = $(this).data('filter');
-        filterAndRenderAccordion(filter);
+        currentFilter = $(this).data('filter');
+        filterAndRenderAccordion(currentFilter, $('#searchBox').val());
     });
     $('#resetFilter').on('click', function () {
         $('.filter-btn').removeClass('active');
-        filterAndRenderAccordion(null);
+        $('#searchBox').val('');
+        currentFilter = null;
+        currentSearch = "";
+        renderAndShowAccordion(allDetails);
+    });
+    $('#searchBox').on('input', function () {
+        currentSearch = $(this).val();
+        filterAndRenderAccordion(currentFilter, currentSearch);
     });
 });

@@ -16,12 +16,13 @@
         </div>
         <div id="overallMetrics" class="mb-4"></div>
         <div id="filterRow" class="mb-3" style="display:none;">
-            <div class="d-flex align-items-center gap-2">
-                <span style="font-weight:500;">Filter by: </span>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span style="font-weight:500;">Filter by:</span>
                 <button class="btn btn-sm btn-danger filter-btn" data-filter="Red">Red</button>
                 <button class="btn btn-sm btn-success filter-btn" data-filter="Green">Green</button>
                 <button class="btn btn-sm btn-warning text-dark filter-btn" data-filter="Amber">Amber</button>
                 <button class="btn btn-sm btn-secondary ms-2" id="resetFilter">Reset</button>
+                <input type="text" id="searchBox" class="form-control ms-3" style="width:230px;max-width:230px;" placeholder="Search in Input/Generated">
             </div>
         </div>
         <div id="detailsAccordion"></div>
