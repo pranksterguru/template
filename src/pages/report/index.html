@@ -10,11 +10,20 @@
 <body>
     <div class="container mt-4">
         <h3>LLM Judge Report Viewer</h3>
-        <div class="mb-3">
+        <div id="filePickerBlock" class="mb-3">
             <label for="jsonFile" class="form-label">Choose JSON File</label>
             <input type="file" class="form-control" id="jsonFile" accept=".json">
         </div>
         <div id="overallMetrics" class="mb-4"></div>
+        <div id="filterRow" class="mb-3" style="display:none;">
+            <div class="d-flex align-items-center gap-2">
+                <span style="font-weight:500;">Filter by: </span>
+                <button class="btn btn-sm btn-danger filter-btn" data-filter="Red">Red</button>
+                <button class="btn btn-sm btn-success filter-btn" data-filter="Green">Green</button>
+                <button class="btn btn-sm btn-warning text-dark filter-btn" data-filter="Amber">Amber</button>
+                <button class="btn btn-sm btn-secondary ms-2" id="resetFilter">Reset</button>
+            </div>
+        </div>
         <div id="detailsAccordion"></div>
     </div>
     

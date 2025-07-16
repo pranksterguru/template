@@ -1,14 +1,21 @@
+let allDetails = [];
+
 function renderOverallMetrics(metrics) {
     if (!metrics) return '';
-    let html = '<div class="mb-4"><h5>Overall Metrics</h5><div class="row">';
+    let html = '<div class="mb-4"><h5>Overall Metrics</h5><div class="metrics-grid">';
     for (let metric in metrics) {
-        html += `<div class="col-md-4 col-6 mb-2"><strong>${metric}</strong>: `;
+        html += `<div class="metric-group">`;
+        html += `<div class="metric-group-title">${metric}</div>`;
+        html += `<div class="metric-group-row">`;
         let vals = metrics[metric];
         for (let k of ['Red', 'Green', 'Amber']) {
             if (vals[k] !== undefined)
-                html += `<span class="card-metric ${k}">${k}: ${vals[k]}</span>`;
+                html += `<div class="metric-score-box ${k}">
+                            <div class="metric-score-label">${k}</div>
+                            <div class="metric-score-value">${vals[k]}</div>
+                        </div>`;
         }
-        html += '</div>';
+        html += `</div></div>`;
     }
     html += '</div></div>';
     return html;
@@ -59,14 +66,19 @@ function renderDetailsAccordion(details) {
 }
 
 function displayJsonData(json) {
-    // Clear previous
     $('#overallMetrics').empty();
     $('#detailsAccordion').empty();
-    let overall = json.result[0]?.overall?.metrics;
-    let details = json.result[1]?.details || [];
-    $('#overallMetrics').html(renderOverallMetrics(overall));
-    $('#detailsAccordion').html(renderDetailsAccordion(details));
 
+    let overall = json.result[0]?.overall?.metrics;
+    allDetails = json.result[1]?.details || [];
+
+    $('#overallMetrics').html(renderOverallMetrics(overall));
+    $('#filterRow').show();
+    renderAndShowAccordion(allDetails);
+}
+
+function renderAndShowAccordion(details) {
+    $('#detailsAccordion').html(renderDetailsAccordion(details));
     $("#detailsAccordionRoot").accordion({
         collapsible: true,
         active: false,
@@ -74,10 +86,20 @@ function displayJsonData(json) {
     });
 }
 
+function filterAndRenderAccordion(rating) {
+    let filtered = allDetails;
+    if (rating) {
+        filtered = allDetails.filter(x => (x.overall_rating || '').toLowerCase() === rating.toLowerCase());
+    }
+    renderAndShowAccordion(filtered);
+}
+
 $(function () {
     $('#jsonFile').on('change', function (e) {
         const file = e.target.files[0];
         if (!file) return;
+        $('#filePickerBlock').hide();
+
         const reader = new FileReader();
         reader.onload = function (evt) {
             try {
@@ -88,5 +110,17 @@ $(function () {
             }
         };
         reader.readAsText(file);
+    });
+
+    // Filter logic
+    $(document).on('click', '.filter-btn', function () {
+        $('.filter-btn').removeClass('active');
+        $(this).addClass('active');
+        let filter = $(this).data('filter');
+        filterAndRenderAccordion(filter);
+    });
+    $('#resetFilter').on('click', function () {
+        $('.filter-btn').removeClass('active');
+        filterAndRenderAccordion(null);
     });
 });
